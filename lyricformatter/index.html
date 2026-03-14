@@ -294,15 +294,11 @@
             </div>
             <div class="field">
                 <label>Lyrics</label>
-                <textarea id="lyricsInput" placeholder="He's my rock, He's my fortress
-He's my deliverer, in Him will I trust
-
-Praise the Lord, praise the Lord
-Let the earth hear His voice"></textarea>
+                <textarea id="lyricsInput" placeholder="Paste lyrics in any format — verses, choruses, long lines. The tool will automatically reflow into 2-line slides of ~25 characters each."></textarea>
             </div>
             <div class="hint">
-                <span class="hint-icon">💡</span>
-                <div><strong>Two lines per slide.</strong> Aim for ~25–30 characters per line. Leave a <strong>blank line</strong> between each pair to start a new slide.</div>
+                <span class="hint-icon">✨</span>
+                <div><strong>Paste raw lyrics in any format.</strong> The tool automatically splits into 2-line slides at ~25 characters per line — no manual formatting needed.</div>
             </div>
             <button class="btn-generate" onclick="generateSlides()">
                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1L9.2 5.8H14.3L10.1 8.7L11.8 13.5L7.5 10.5L3.2 13.5L4.9 8.7L0.7 5.8H5.8L7.5 1Z" fill="white"/></svg>
@@ -338,12 +334,53 @@ Let the earth hear His voice"></textarea>
 <script>
     let generatedSlides = [];
 
+    const TARGET_CHARS = 25;
+
+    // Split a long line into chunks of ~TARGET_CHARS, breaking at word boundaries
+    function splitLineToChunks(line) {
+        const words = line.trim().split(/\s+/);
+        const chunks = [];
+        let current = '';
+        for (const word of words) {
+            const test = current ? current + ' ' + word : word;
+            if (test.length <= TARGET_CHARS * 1.5 && current.length < TARGET_CHARS) {
+                current = test;
+            } else {
+                if (current) chunks.push(current);
+                current = word;
+            }
+        }
+        if (current) chunks.push(current);
+        return chunks.length ? chunks : [line];
+    }
+
+    // Take all raw lines and reflow into 2-line slide pairs
+    function reflowIntoSlides(rawLines) {
+        // Step 1: flatten all non-empty lines into word chunks of ~25 chars
+        const allChunks = [];
+        for (const line of rawLines) {
+            const trimmed = line.trim();
+            if (!trimmed) continue;
+            const chunks = splitLineToChunks(trimmed);
+            allChunks.push(...chunks);
+        }
+
+        // Step 2: pair them up into 2-line slides
+        const slides = [];
+        for (let i = 0; i < allChunks.length; i += 2) {
+            const pair = [allChunks[i]];
+            if (allChunks[i + 1]) pair.push(allChunks[i + 1]);
+            slides.push({ type: 'lyric', lines: pair });
+        }
+        return slides;
+    }
+
     function parseSlides(title, lyrics) {
         const slides = [{ type: 'title', lines: [title] }];
-        lyrics.trim().split(/\n\s*\n/).forEach(block => {
-            const lines = block.trim().split('\n').map(l => l.trim()).filter(l => l);
-            if (lines.length) slides.push({ type: 'lyric', lines });
-        });
+        // Split input into raw lines
+        const rawLines = lyrics.trim().split('\n');
+        const lyricSlides = reflowIntoSlides(rawLines);
+        slides.push(...lyricSlides);
         return slides;
     }
 
