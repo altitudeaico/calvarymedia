@@ -3,537 +3,434 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Song Lyric Formatter | Calvary Hephzibah</title>
+    <title>Song Lyric Formatter — Calvary Hephzibah</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <style>
         :root {
             --red: #C41E2A;
-            --red-dark: #8B1520;
-            --red-glow: rgba(196, 30, 42, 0.18);
-            --black: #0C0C0C;
-            --surface: #161616;
-            --surface-2: #1F1F1F;
-            --border: rgba(255,255,255,0.07);
-            --text: #F0EDE8;
-            --text-muted: rgba(240,237,232,0.45);
-            --slide-bg: #111111;
-            --slide-text: #FFFFFF;
+            --red-light: #fef2f2;
+            --red-mid: rgba(196,30,42,0.12);
+            --bg: #F5F4F0;
+            --surface: #FFFFFF;
+            --surface-2: #FAFAF8;
+            --border: rgba(0,0,0,0.07);
+            --border-strong: rgba(0,0,0,0.12);
+            --text: #111110;
+            --text-2: #555552;
+            --text-3: #999994;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.06);
+            --radius: 16px;
+            --radius-sm: 10px;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
-            font-family: 'Source Sans 3', sans-serif;
-            background: var(--black);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
             color: var(--text);
             min-height: 100vh;
-            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
-
-        /* Header */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(circle at 20% 10%, rgba(196,30,42,0.04) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 90%, rgba(196,30,42,0.03) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 0;
+        }
         .header {
-            background: var(--surface);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(245,244,240,0.88);
+            backdrop-filter: blur(20px) saturate(1.4);
+            -webkit-backdrop-filter: blur(20px) saturate(1.4);
             border-bottom: 1px solid var(--border);
-            padding: 20px 24px;
+            padding: 0 32px;
+            height: 64px;
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
         }
-
-        .header img {
-            height: 40px;
-            width: auto;
-        }
-
-        .header-text h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text);
-            line-height: 1.2;
-        }
-
-        .header-text p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        .badge {
+        .header img { height: 32px; width: auto; }
+        .header-divider { width: 1px; height: 20px; background: var(--border-strong); }
+        .header-title { font-size: 0.95rem; font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
+        .header-badge {
             margin-left: auto;
-            background: var(--red-glow);
-            border: 1px solid rgba(196,30,42,0.4);
-            color: #ff6b76;
+            background: var(--red-mid);
+            color: var(--red);
             font-size: 0.7rem;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 0.06em;
             text-transform: uppercase;
             padding: 4px 10px;
-            border-radius: 4px;
+            border-radius: 100px;
         }
-
-        /* Main layout */
         .main {
-            max-width: 1100px;
+            position: relative;
+            z-index: 1;
+            max-width: 1160px;
             margin: 0 auto;
-            padding: 32px 24px 80px;
+            padding: 40px 32px 80px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 24px;
+            gap: 20px;
             align-items: start;
         }
-
-        @media (max-width: 768px) {
-            .main { grid-template-columns: 1fr; padding: 20px 16px 60px; }
+        @media (max-width: 820px) {
+            .main { grid-template-columns: 1fr; padding: 24px 20px 60px; }
+            .header { padding: 0 20px; }
         }
-
-        /* Panel */
-        .panel {
+        .card {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
             overflow: hidden;
+            animation: fadeUp 0.4s ease both;
         }
-
-        .panel-header {
-            padding: 16px 20px;
+        .card:nth-child(2) { animation-delay: 0.08s; }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .card-header {
+            padding: 20px 24px 16px;
             border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
-
-        .step-num {
-            width: 24px;
-            height: 24px;
+        .step-pill {
             background: var(--red);
             color: white;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
+            letter-spacing: 0.04em;
+            padding: 3px 9px;
+            border-radius: 100px;
         }
-
-        .panel-header h2 {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--text);
+        .card-header h2 { font-size: 0.95rem; font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
+        .slide-counter {
+            margin-left: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-3);
+            background: var(--surface-2);
+            padding: 3px 10px;
+            border-radius: 100px;
+            border: 1px solid var(--border);
         }
-
-        .panel-body {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        /* Inputs */
-        label {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            margin-bottom: 6px;
-        }
-
-        input[type="text"], textarea {
+        .card-body { padding: 24px; display: flex; flex-direction: column; gap: 18px; }
+        .field { display: flex; flex-direction: column; gap: 7px; }
+        .field label { font-size: 0.78rem; font-weight: 600; color: var(--text-2); letter-spacing: 0.02em; }
+        .field input, .field textarea {
             width: 100%;
             background: var(--surface-2);
-            border: 1px solid var(--border);
-            border-radius: 8px;
+            border: 1.5px solid var(--border-strong);
+            border-radius: var(--radius-sm);
             color: var(--text);
-            font-family: 'Source Sans 3', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-size: 0.95rem;
             padding: 12px 14px;
             outline: none;
-            transition: border-color 0.2s;
+            transition: border-color 0.18s, box-shadow 0.18s;
+            box-shadow: var(--shadow-sm);
+        }
+        .field input:focus, .field textarea:focus {
+            border-color: var(--red);
+            box-shadow: 0 0 0 3px rgba(196,30,42,0.1), var(--shadow-sm);
+        }
+        .field input::placeholder, .field textarea::placeholder { color: var(--text-3); }
+        .field textarea {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            line-height: 1.9;
+            min-height: 240px;
             resize: vertical;
         }
-
-        input[type="text"]:focus, textarea:focus {
-            border-color: rgba(196,30,42,0.6);
-        }
-
-        input[type="text"]::placeholder, textarea::placeholder {
-            color: rgba(240,237,232,0.2);
-        }
-
-        textarea {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            line-height: 1.8;
-            min-height: 260px;
-        }
-
         .hint {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-            background: rgba(196,30,42,0.06);
-            border: 1px solid rgba(196,30,42,0.15);
-            border-radius: 6px;
-            padding: 10px 12px;
+            display: flex;
+            gap: 10px;
+            background: var(--surface-2);
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius-sm);
+            padding: 12px 14px;
+            font-size: 0.82rem;
+            color: var(--text-2);
+            line-height: 1.55;
         }
-
-        .hint strong { color: rgba(240,237,232,0.75); }
-
-        /* Generate button */
+        .hint-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+        .hint strong { color: var(--text); font-weight: 600; }
         .btn-generate {
             width: 100%;
             background: var(--red);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
             padding: 14px 20px;
-            font-family: 'Source Sans 3', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
+            letter-spacing: -0.01em;
+            box-shadow: 0 2px 8px rgba(196,30,42,0.3), 0 1px 3px rgba(196,30,42,0.2);
+            transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
         }
-
-        .btn-generate:hover { background: #a01825; }
-        .btn-generate:active { transform: scale(0.99); }
-
-        /* Right panel - preview */
-        .preview-panel { position: sticky; top: 24px; }
-
-        .slide-count {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-left: auto;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .preview-area {
-            padding: 20px;
+        .btn-generate:hover { background: #a8161f; box-shadow: 0 4px 16px rgba(196,30,42,0.35), 0 2px 6px rgba(196,30,42,0.2); }
+        .btn-generate:active { transform: scale(0.985); }
+        .preview-card { position: sticky; top: 84px; }
+        .preview-scroll {
+            padding: 20px 24px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            max-height: 520px;
+            gap: 10px;
+            max-height: 500px;
             overflow-y: auto;
         }
-
-        .preview-area::-webkit-scrollbar { width: 4px; }
-        .preview-area::-webkit-scrollbar-track { background: transparent; }
-        .preview-area::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-
-        .empty-state {
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--text-muted);
+        .preview-scroll::-webkit-scrollbar { width: 4px; }
+        .preview-scroll::-webkit-scrollbar-track { background: transparent; }
+        .preview-scroll::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+        .empty-state { text-align: center; padding: 48px 20px; color: var(--text-3); }
+        .empty-icon {
+            width: 52px; height: 52px;
+            background: var(--surface-2);
+            border: 1px solid var(--border-strong);
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem;
+            margin: 0 auto 14px;
+            box-shadow: var(--shadow-sm);
         }
-
-        .empty-state .icon { font-size: 2.5rem; margin-bottom: 12px; opacity: 0.4; }
-        .empty-state p { font-size: 0.9rem; }
-
-        /* Slide preview */
-        .slide-preview {
-            background: var(--slide-bg);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 8px;
+        .empty-state p { font-size: 0.88rem; line-height: 1.6; }
+        .slide-thumb {
+            background: #111;
+            border-radius: 10px;
             aspect-ratio: 16/9;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 16px;
             position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(0,0,0,0.15);
             flex-shrink: 0;
+            transition: transform 0.15s, box-shadow 0.15s;
         }
-
-        .slide-preview .slide-num {
-            position: absolute;
-            top: 8px;
-            left: 10px;
-            font-size: 0.65rem;
-            color: rgba(255,255,255,0.2);
+        .slide-thumb:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+        .slide-thumb.is-title { background: linear-gradient(135deg, #1a0507 0%, #0e0e0e 100%); }
+        .thumb-num {
+            position: absolute; top: 8px; left: 10px;
             font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem; color: rgba(255,255,255,0.2);
         }
-
-        .slide-preview .slide-title-label {
-            position: absolute;
-            top: 8px;
-            right: 10px;
-            font-size: 0.6rem;
-            color: rgba(196,30,42,0.6);
-            font-family: 'JetBrains Mono', monospace;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .thumb-tag {
+            position: absolute; top: 8px; right: 10px;
+            font-size: 0.6rem; font-weight: 600; letter-spacing: 0.06em;
+            text-transform: uppercase; color: rgba(196,30,42,0.7);
         }
-
-        .slide-content {
-            text-align: center;
-            color: var(--slide-text);
-        }
-
-        .slide-content .line {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(0.75rem, 2vw, 1rem);
-            font-weight: 600;
-            line-height: 1.5;
-            display: block;
-        }
-
-        /* Title slide styling */
-        .slide-preview.is-title { background: linear-gradient(135deg, #1a0608 0%, #0c0c0c 100%); }
-        .slide-preview.is-title .slide-content .line { color: #ff8a93; }
-
-        /* Download area */
-        .download-area {
-            padding: 16px 20px;
-            border-top: 1px solid var(--border);
-            display: none;
-        }
-
-        .download-area.visible { display: block; }
-
+        .thumb-accent { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--red); opacity: 0.5; }
+        .is-title .thumb-accent { opacity: 1; }
+        .slide-lines { text-align: center; padding: 0 16px; }
+        .slide-lines span { display: block; font-family: 'DM Serif Display', serif; font-size: clamp(0.7rem, 1.8vw, 0.95rem); color: #fff; line-height: 1.55; }
+        .is-title .slide-lines span { color: #ffb3b8; }
+        .card-footer { padding: 16px 24px; border-top: 1px solid var(--border); display: none; }
+        .card-footer.visible { display: block; }
         .btn-download {
             width: 100%;
-            background: transparent;
+            background: var(--surface-2);
             color: var(--text);
-            border: 1px solid var(--border);
-            border-radius: 8px;
+            border: 1.5px solid var(--border-strong);
+            border-radius: var(--radius-sm);
             padding: 12px 20px;
-            font-family: 'Source Sans 3', sans-serif;
-            font-size: 0.95rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.92rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.15s;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
+            letter-spacing: -0.01em;
         }
-
-        .btn-download:hover {
-            background: var(--surface-2);
-            border-color: rgba(255,255,255,0.15);
-        }
-
-        /* Slide canvas (hidden, used for image generation) */
+        .btn-download:hover { background: var(--surface); border-color: var(--red); color: var(--red); box-shadow: var(--shadow-md); }
+        .btn-download:disabled { opacity: 0.5; cursor: not-allowed; }
         #slideCanvas { display: none; }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/ufTeOHywYxLPaG9TDWPG/media/68319627522e13a702426868.png" alt="Calvary Logo">
-        <div class="header-text">
-            <h1>Song Lyric Formatter</h1>
-            <p>Calvary Hephzibah Media Team</p>
+<header class="header">
+    <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/ufTeOHywYxLPaG9TDWPG/media/68319627522e13a702426868.png" alt="Calvary Hephzibah">
+    <div class="header-divider"></div>
+    <div class="header-title">Song Lyric Formatter</div>
+    <span class="header-badge">Media Team</span>
+</header>
+
+<main class="main">
+
+    <div class="card">
+        <div class="card-header">
+            <span class="step-pill">Step 1</span>
+            <h2>Enter Lyrics</h2>
         </div>
-        <span class="badge">Lite</span>
-    </div>
-
-    <div class="main">
-
-        <!-- Input Panel -->
-        <div class="panel">
-            <div class="panel-header">
-                <div class="step-num">1</div>
-                <h2>Enter Lyrics</h2>
+        <div class="card-body">
+            <div class="field">
+                <label>Song Title</label>
+                <input type="text" id="songTitle" placeholder="e.g. Days of Elijah" autocomplete="off">
             </div>
-            <div class="panel-body">
-                <div>
-                    <label>Song Title</label>
-                    <input type="text" id="songTitle" placeholder="e.g. Days of Elijah">
-                </div>
-                <div>
-                    <label>Lyrics</label>
-                    <textarea id="lyricsInput" placeholder="He's my rock, He's my fortress
+            <div class="field">
+                <label>Lyrics</label>
+                <textarea id="lyricsInput" placeholder="He's my rock, He's my fortress
 He's my deliverer, in Him will I trust
 
 Praise the Lord, praise the Lord
 Let the earth hear His voice"></textarea>
-                </div>
-                <div class="hint">
-                    <strong>Two lines per slide.</strong> Keep each line ~25–30 characters. Add a <strong>blank line</strong> between each pair to create a new slide.
-                </div>
-                <button class="btn-generate" onclick="generateSlides()">
-                    ✨ Generate Slides
-                </button>
             </div>
+            <div class="hint">
+                <span class="hint-icon">💡</span>
+                <div><strong>Two lines per slide.</strong> Aim for ~25–30 characters per line. Leave a <strong>blank line</strong> between each pair to start a new slide.</div>
+            </div>
+            <button class="btn-generate" onclick="generateSlides()">
+                <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1L9.2 5.8H14.3L10.1 8.7L11.8 13.5L7.5 10.5L3.2 13.5L4.9 8.7L0.7 5.8H5.8L7.5 1Z" fill="white"/></svg>
+                Generate Slides
+            </button>
         </div>
-
-        <!-- Preview Panel -->
-        <div class="panel preview-panel">
-            <div class="panel-header">
-                <div class="step-num">2</div>
-                <h2>Preview &amp; Download</h2>
-                <span class="slide-count" id="slideCount"></span>
-            </div>
-            <div class="preview-area" id="previewArea">
-                <div class="empty-state">
-                    <div class="icon">🎵</div>
-                    <p>Enter lyrics and click Generate<br>to preview slides</p>
-                </div>
-            </div>
-            <div class="download-area" id="downloadArea">
-                <button class="btn-download" onclick="downloadZip()">
-                    📥 Download ZIP
-                </button>
-            </div>
-        </div>
-
     </div>
 
-    <canvas id="slideCanvas" width="1920" height="1080"></canvas>
+    <div class="card preview-card">
+        <div class="card-header">
+            <span class="step-pill">Step 2</span>
+            <h2>Preview &amp; Download</h2>
+            <span class="slide-counter" id="slideCount" style="display:none"></span>
+        </div>
+        <div class="preview-scroll" id="previewArea">
+            <div class="empty-state">
+                <div class="empty-icon">🎵</div>
+                <p>Enter your lyrics and hit<br><strong>Generate Slides</strong> to preview</p>
+            </div>
+        </div>
+        <div class="card-footer" id="downloadFooter">
+            <button class="btn-download" id="downloadBtn" onclick="downloadZip()">
+                <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1v9M4 7l3.5 3.5L11 7M2 13h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Download ZIP
+            </button>
+        </div>
+    </div>
 
-    <script>
-        let generatedSlides = [];
+</main>
 
-        function parseSlides(title, lyrics) {
-            const slides = [];
+<canvas id="slideCanvas" width="1920" height="1080"></canvas>
 
-            // Title slide
-            slides.push({ type: 'title', lines: [title] });
+<script>
+    let generatedSlides = [];
 
-            // Split by blank lines
-            const blocks = lyrics.trim().split(/\n\s*\n/);
-            blocks.forEach(block => {
-                const lines = block.trim().split('\n').map(l => l.trim()).filter(l => l.length > 0);
-                if (lines.length > 0) {
-                    slides.push({ type: 'lyric', lines });
-                }
-            });
-
-            return slides;
-        }
-
-        function generateSlides() {
-            const title = document.getElementById('songTitle').value.trim();
-            const lyrics = document.getElementById('lyricsInput').value.trim();
-
-            if (!title && !lyrics) return;
-
-            generatedSlides = parseSlides(title || 'Untitled', lyrics);
-
-            const previewArea = document.getElementById('previewArea');
-            const slideCount = document.getElementById('slideCount');
-            const downloadArea = document.getElementById('downloadArea');
-
-            slideCount.textContent = `${generatedSlides.length} slides`;
-            downloadArea.classList.add('visible');
-
-            previewArea.innerHTML = '';
-
-            generatedSlides.forEach((slide, i) => {
-                const div = document.createElement('div');
-                div.className = `slide-preview${slide.type === 'title' ? ' is-title' : ''}`;
-
-                const numEl = document.createElement('div');
-                numEl.className = 'slide-num';
-                numEl.textContent = `${String(i + 1).padStart(2, '0')}`;
-                div.appendChild(numEl);
-
-                if (slide.type === 'title') {
-                    const label = document.createElement('div');
-                    label.className = 'slide-title-label';
-                    label.textContent = 'Title';
-                    div.appendChild(label);
-                }
-
-                const content = document.createElement('div');
-                content.className = 'slide-content';
-                slide.lines.forEach(line => {
-                    const span = document.createElement('span');
-                    span.className = 'line';
-                    span.textContent = line;
-                    content.appendChild(span);
-                });
-                div.appendChild(content);
-                previewArea.appendChild(div);
-            });
-        }
-
-        async function renderSlideToCanvas(slide, canvas) {
-            const ctx = canvas.getContext('2d');
-            const W = 1920, H = 1080;
-
-            ctx.clearRect(0, 0, W, H);
-
-            // Background
-            if (slide.type === 'title') {
-                const grad = ctx.createLinearGradient(0, 0, W, H);
-                grad.addColorStop(0, '#1a0608');
-                grad.addColorStop(1, '#0c0c0c');
-                ctx.fillStyle = grad;
-            } else {
-                ctx.fillStyle = '#111111';
-            }
-            ctx.fillRect(0, 0, W, H);
-
-            // Red accent line at bottom
-            ctx.fillStyle = '#C41E2A';
-            ctx.fillRect(0, H - 6, W, 6);
-
-            // Text
-            const lines = slide.lines;
-            const fontSize = slide.type === 'title' ? 80 : 72;
-            ctx.font = `700 ${fontSize}px 'Georgia', serif`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillStyle = slide.type === 'title' ? '#ff8a93' : '#FFFFFF';
-
-            const lineHeight = fontSize * 1.5;
-            const totalH = lines.length * lineHeight;
-            const startY = (H - totalH) / 2 + lineHeight / 2;
-
-            lines.forEach((line, i) => {
-                ctx.fillText(line, W / 2, startY + i * lineHeight);
-            });
-
-            return new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-        }
-
-        async function downloadZip() {
-            if (generatedSlides.length === 0) return;
-
-            const btn = document.querySelector('.btn-download');
-            btn.textContent = '⏳ Generating...';
-            btn.disabled = true;
-
-            const zip = new JSZip();
-            const canvas = document.getElementById('slideCanvas');
-            const title = document.getElementById('songTitle').value.trim() || 'slides';
-            const folder = zip.folder(title.replace(/[^a-z0-9]/gi, '_'));
-
-            for (let i = 0; i < generatedSlides.length; i++) {
-                const blob = await renderSlideToCanvas(generatedSlides[i], canvas);
-                const filename = `slide_${String(i + 1).padStart(2, '0')}.png`;
-                folder.file(filename, blob);
-            }
-
-            const zipBlob = await zip.generateAsync({ type: 'blob' });
-            const url = URL.createObjectURL(zipBlob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `${title.replace(/[^a-z0-9]/gi, '_')}_slides.zip`;
-            a.click();
-            URL.revokeObjectURL(url);
-
-            btn.textContent = '📥 Download ZIP';
-            btn.disabled = false;
-        }
-
-        // Allow Enter key to trigger generate (Shift+Enter for newline in textarea)
-        document.getElementById('songTitle').addEventListener('keydown', e => {
-            if (e.key === 'Enter') generateSlides();
+    function parseSlides(title, lyrics) {
+        const slides = [{ type: 'title', lines: [title] }];
+        lyrics.trim().split(/\n\s*\n/).forEach(block => {
+            const lines = block.trim().split('\n').map(l => l.trim()).filter(l => l);
+            if (lines.length) slides.push({ type: 'lyric', lines });
         });
-    </script>
+        return slides;
+    }
 
+    function generateSlides() {
+        const title = document.getElementById('songTitle').value.trim();
+        const lyrics = document.getElementById('lyricsInput').value.trim();
+        if (!title && !lyrics) return;
+
+        generatedSlides = parseSlides(title || 'Untitled', lyrics);
+
+        const previewArea = document.getElementById('previewArea');
+        const slideCount = document.getElementById('slideCount');
+        const downloadFooter = document.getElementById('downloadFooter');
+
+        slideCount.textContent = generatedSlides.length + ' slides';
+        slideCount.style.display = 'inline-flex';
+        downloadFooter.classList.add('visible');
+        previewArea.innerHTML = '';
+
+        generatedSlides.forEach((slide, i) => {
+            const div = document.createElement('div');
+            div.className = 'slide-thumb' + (slide.type === 'title' ? ' is-title' : '');
+            div.innerHTML = `
+                <div class="thumb-num">${String(i+1).padStart(2,'0')}</div>
+                ${slide.type === 'title' ? '<div class="thumb-tag">Title</div>' : ''}
+                <div class="slide-lines">${slide.lines.map(l => `<span>${l}</span>`).join('')}</div>
+                <div class="thumb-accent"></div>`;
+            div.style.cssText = `opacity:0;transform:translateY(8px);transition:opacity 0.25s ease ${i*0.04}s,transform 0.25s ease ${i*0.04}s`;
+            previewArea.appendChild(div);
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                div.style.opacity = '1';
+                div.style.transform = 'translateY(0)';
+            }));
+        });
+    }
+
+    async function renderSlideToCanvas(slide, canvas) {
+        const ctx = canvas.getContext('2d');
+        const W = 1920, H = 1080;
+        ctx.clearRect(0, 0, W, H);
+        if (slide.type === 'title') {
+            const g = ctx.createLinearGradient(0,0,W,H);
+            g.addColorStop(0,'#1a0507'); g.addColorStop(1,'#0e0e0e');
+            ctx.fillStyle = g;
+        } else { ctx.fillStyle = '#111111'; }
+        ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = '#C41E2A';
+        ctx.fillRect(0, H-8, W, 8);
+        const fontSize = slide.type === 'title' ? 82 : 74;
+        ctx.font = `400 ${fontSize}px Georgia, serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = slide.type === 'title' ? '#ffb3b8' : '#FFFFFF';
+        const lh = fontSize * 1.55;
+        const startY = (H - slide.lines.length * lh) / 2 + lh / 2;
+        slide.lines.forEach((line, i) => ctx.fillText(line, W/2, startY + i*lh));
+        return new Promise(r => canvas.toBlob(r, 'image/png'));
+    }
+
+    async function downloadZip() {
+        if (!generatedSlides.length) return;
+        const btn = document.getElementById('downloadBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="animation:spin 0.8s linear infinite"><path d="M7 1A6 6 0 1 1 1 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> Generating...';
+
+        const zip = new JSZip();
+        const canvas = document.getElementById('slideCanvas');
+        const title = document.getElementById('songTitle').value.trim() || 'slides';
+        const folder = zip.folder(title.replace(/[^a-z0-9]/gi, '_'));
+
+        for (let i = 0; i < generatedSlides.length; i++) {
+            const blob = await renderSlideToCanvas(generatedSlides[i], canvas);
+            folder.file(`slide_${String(i+1).padStart(2,'0')}.png`, blob);
+        }
+
+        const zipBlob = await zip.generateAsync({ type: 'blob' });
+        const a = Object.assign(document.createElement('a'), {
+            href: URL.createObjectURL(zipBlob),
+            download: title.replace(/[^a-z0-9]/gi, '_') + '_slides.zip'
+        });
+        a.click();
+        URL.revokeObjectURL(a.href);
+        btn.disabled = false;
+        btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1v9M4 7l3.5 3.5L11 7M2 13h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Download ZIP';
+    }
+
+    document.getElementById('songTitle').addEventListener('keydown', e => { if (e.key === 'Enter') generateSlides(); });
+</script>
 </body>
 </html>
