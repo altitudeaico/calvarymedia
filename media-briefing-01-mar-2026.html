@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Briefing - Sunday 1st March 2026 | Calvary Hephzibah</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-orange: #D95A2B;
+            --deep-charcoal: #1A1A1A;
+            --warm-gray: #2D2D2D;
+            --cream: #FAF9F7;
+            --warm-white: #FFFFFE;
+            --worship-purple: #6B46C1;
+            --worship-blue: #3B82F6;
+            --shadow-soft: 0 4px 20px rgba(13, 13, 13, 0.08);
+            --shadow-medium: 0 8px 40px rgba(13, 13, 13, 0.12);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--cream);
+            color: var(--deep-charcoal);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--worship-purple) 0%, var(--worship-blue) 100%);
+            padding: 60px 24px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFFFFF' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.6;
+        }
+
+        .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+
+        .logo { width: 180px; height: auto; margin-bottom: 24px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4)); }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); color: white; font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 8px 20px; border-radius: 100px; margin-bottom: 20px; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: white; margin-bottom: 12px; }
+        .hero-date { font-size: 1.25rem; color: rgba(255,255,255,0.95); font-weight: 500; }
+        .hero-theme { font-size: 1rem; color: rgba(255,255,255,0.85); font-weight: 500; margin-top: 12px; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 24px 80px; }
+
+        /* Order of Service Table */
+        .order-table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 16px; }
+        .order-table th { background: var(--worship-purple); color: white; text-align: left; padding: 14px 16px; font-weight: 600; }
+        .order-table th:first-child { border-radius: 10px 0 0 0; }
+        .order-table th:last-child { border-radius: 0 10px 0 0; }
+        .order-table td { padding: 14px 16px; border-bottom: 1px solid #eee; }
+        .order-table tr:last-child td:first-child { border-radius: 0 0 0 10px; }
+        .order-table tr:last-child td:last-child { border-radius: 0 0 10px 0; }
+        .order-table tr:nth-child(even) td { background: #f8f7f5; }
+        .order-table tr:nth-child(odd) td { background: white; }
+        .tbc-badge { background: #FFE0B2; color: #E65100; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 700; }
+        .sermon-row td { background: linear-gradient(135deg, rgba(107,70,193,0.1), rgba(59,130,246,0.1)) !important; font-weight: 600; }
+        .special-row td { background: linear-gradient(135deg, rgba(76,175,80,0.1), rgba(129,199,132,0.15)) !important; }
+
+        .placeholder-link {
+            background: #e0e0e0;
+            color: #888;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <div class="hero-content">
+            <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/ufTeOHywYxLPaG9TDWPG/media/68319627522e13a702426868.png" alt="Calvary Logo" class="logo">
+            <div class="hero-badge">🎶 Sunday Service</div>
+            <h1>Sunday Service Media Guide</h1>
+            <div class="hero-date">Sunday, 1st March 2026</div>
+            <div class="hero-theme">The Manifestation of GOD's Glory: The SHEKINAH</div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- Order of Service -->
+        <div style="background: white; border-radius: 16px; padding: 32px; box-shadow: var(--shadow-medium); margin-bottom: 32px;">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 8px; color: var(--deep-charcoal);">📋 Order of Service</h3>
+            <p style="color: #666; margin-bottom: 16px;">Full running order for today's service.</p>
+            <table class="order-table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Led By</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Welcome &amp; Bible Reading</td>
+                        <td>Ps Gbenga Adebanjo</td>
+                    </tr>
+                    <tr>
+                        <td>Opening Prayer</td>
+                        <td>Mummy Akintunde</td>
+                    </tr>
+                    <tr>
+                        <td>Worship</td>
+                        <td>Worship Team 🎶</td>
+                    </tr>
+                    <tr>
+                        <td>Communion</td>
+                        <td>Brother Michael Kabalu</td>
+                    </tr>
+                    <tr>
+                        <td>Announcements</td>
+                        <td>Pst Kayode Ogungbenro</td>
+                    </tr>
+                    <tr class="special-row">
+                        <td>📢 Media Team Training Announcement</td>
+                        <td>Scott Shokoya</td>
+                    </tr>
+                    <tr>
+                        <td>Bible Reading</td>
+                        <td>Dr Caster Martins <span class="tbc-badge">SCRIPTURE TBC</span></td>
+                    </tr>
+                    <tr class="sermon-row">
+                        <td>Sermon: <em>The Manifestation of GOD's Glory: The SHEKINAH</em></td>
+                        <td>Brother Michael Kabalu</td>
+                    </tr>
+                    <tr>
+                        <td>Offering 🎵 <em>Praise The Name of Jesus</em></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Closing Prayer</td>
+                        <td>Dr Ayo Olatoye</td>
+                    </tr>
+                    <tr>
+                        <td>Benediction</td>
+                        <td>Ps Funke Adebanjo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Media Team Training Announcement -->
+        <div style="background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%); border-radius: 16px; padding: 24px; margin-bottom: 32px; color: white;">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 8px;">📢 Media Team Training Announcement</h3>
+            <p><strong>Announced by:</strong> Scott Shokoya</p>
+            <p style="margin-top: 8px; opacity: 0.95;">Be ready to display any relevant slides or graphics during this announcement if provided.</p>
+        </div>
+
+        <!-- Phone Camera Checklist -->
+        <div style="background: white; border-radius: 16px; padding: 32px; box-shadow: var(--shadow-medium); margin-bottom: 32px; border-left: 5px solid #4CAF50;">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 20px; color: var(--deep-charcoal);">📱 Phone Camera Checklist</h3>
+            <p style="margin-bottom: 20px; color: #666;">The phone used for video streaming must be ready before service begins.</p>
+            
+            <div style="display: grid; gap: 12px;">
+                <div style="display: flex; align-items: center; gap: 12px; padding: 14px; background: #f8f9fa; border-radius: 8px;">
+                    <span style="font-size: 1.5rem;">🔋</span>
+                    <div>
+                        <p style="font-weight: 600; margin-bottom: 2px;">Battery charged?</p>
+                        <p style="font-size: 0.9rem; color: #666;">Check battery level before service starts</p>
+                    </div>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 12px; padding: 14px; background: #fff3cd; border-radius: 8px; border: 1px solid #ffc107;">
+                    <span style="font-size: 1.5rem;">🔌</span>
+                    <div>
+                        <p style="font-weight: 600; margin-bottom: 2px;">Charger plugged in during streaming</p>
+                        <p style="font-size: 0.9rem; color: #666;"><strong>⚠️ Requires USB-C charger</strong> — ensure it's connected throughout service</p>
+                    </div>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 12px; padding: 14px; background: #f8f9fa; border-radius: 8px;">
+                    <span style="font-size: 1.5rem;">📶</span>
+                    <div>
+                        <p style="font-weight: 600; margin-bottom: 2px;">Stable mount/tripod?</p>
+                        <p style="font-size: 0.9rem; color: #666;">Phone should be secure and steady</p>
+                    </div>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 12px; padding: 14px; background: #e3f2fd; border-radius: 8px; border: 1px solid #2196F3;">
+                    <span style="font-size: 1.5rem;">📺</span>
+                    <div>
+                        <p style="font-weight: 600; margin-bottom: 2px;">Livestream connected?</p>
+                        <p style="font-size: 0.9rem; color: #666;">Confirm stream is live before service begins</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Camera Framing Guidance -->
+        <div style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 16px; padding: 32px; margin-bottom: 32px; color: white;">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 20px;">🎥 Camera Framing Guide</h3>
+            
+            <div style="display: flex; gap: 24px; flex-wrap: wrap; align-items: center;">
+                <div style="flex: 1; min-width: 280px;">
+                    <p style="font-size: 1.05rem; margin-bottom: 16px;"><strong>Rule of thumb:</strong> Zoom in so there's only a few centimetres of space between the top of the speaker's head and the top of the frame.</p>
+                    <p style="opacity: 0.9; margin-bottom: 16px;">This creates a professional, engaged shot that keeps the focus on the speaker without excessive empty space above.</p>
+                    <div style="background: rgba(255,255,255,0.1); padding: 16px; border-radius: 8px;">
+                        <p style="font-weight: 600; margin-bottom: 8px;">✅ Good framing:</p>
+                        <ul style="margin-left: 20px; opacity: 0.95;">
+                            <li>Tight headroom (2-5cm gap at top)</li>
+                            <li>Speaker fills most of the frame</li>
+                            <li>Eyes in upper third of screen</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="flex: 0 0 200px; text-align: center;">
+                    <div style="background: #2d2d2d; border-radius: 8px; padding: 16px; border: 2px solid #4a4a4a;">
+                        <div style="background: #3d3d3d; border-radius: 4px; height: 120px; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 8px; position: relative;">
+                            <div style="font-size: 0.7rem; color: #888; position: absolute; top: 4px; right: 8px;">← small gap</div>
+                            <div style="width: 50px; height: 50px; background: #666; border-radius: 50%; margin: 0 auto;"></div>
+                            <div style="width: 70px; height: 50px; background: #666; border-radius: 8px 8px 0 0; margin: 4px auto 0;"></div>
+                        </div>
+                        <p style="font-size: 0.8rem; margin-top: 8px; color: #aaa;">Correct framing</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Worship Songs -->
+        <div style="background: white; border-radius: 16px; padding: 32px; box-shadow: var(--shadow-medium); margin-bottom: 32px;">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 8px; color: var(--deep-charcoal);">🎶 Today's Worship Songs</h3>
+            <p style="color: #666; margin-bottom: 20px;">Led by the Worship Team. Display lyrics on screen during each song.</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                
+                <!-- Medley -->
+                <div style="background: linear-gradient(135deg, #FF6B35 0%, #D95A2B 100%); border-radius: 12px; padding: 20px; color: white;">
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                        <span style="background: rgba(255,255,255,0.25); padding: 4px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: 700;">MEDLEY</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 8px; margin-left: 8px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                            <span style="font-weight: 600;">1. Days of Elijah</span>
+                            <a href="https://drive.google.com/file/d/1Bj2qctPq1-BdZ9_eW_h_vE6Bkc5k6i9r/view?usp=sharing" target="_blank" style="background: white; color: #D95A2B; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.85rem;">📥 Download</a>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                            <span style="font-weight: 600;">2. My Hands, My Feet, My Whole Body</span>
+                            <a href="https://drive.google.com/file/d/1akN6Bc5RsXJI2JKUDjDOQD9weT-zvknz/view?usp=sharing" target="_blank" style="background: white; color: #D95A2B; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.85rem;">📥 Download</a>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                            <span style="font-weight: 600;">3. Guide Me O Thou Great Jehovah (Afro Praise)</span>
+                            <a href="https://drive.google.com/file/d/1iJxCNU1KszY9qvNQPEdJWUc7yzura_Gz/view?usp=sharing" target="_blank" style="background: white; color: #D95A2B; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.85rem;">📥 Download</a>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                            <span style="font-weight: 600;">4. In The Room</span>
+                            <span class="placeholder-link">⚠️ See below</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                            <span style="font-weight: 600;">5. More Than Able</span>
+                            <span class="placeholder-link">⚠️ See below</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                            <span style="font-weight: 600;">6. King of Glory</span>
+                            <a href="https://drive.google.com/file/d/19js0IUmoCvS4vaE68-lls8mkirvSobO3/view?usp=sharing" target="_blank" style="background: white; color: #D95A2B; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.85rem;">📥 Download</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Missing Songs - Generate Using Formatter -->
+        <div style="background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%); border-radius: 16px; padding: 32px; margin-bottom: 32px; color: white;">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 16px;">⚠️ Missing Song Lyrics: In The Room & More Than Able</h3>
+            <p style="margin-bottom: 16px; opacity: 0.95;">These two songs don't have pre-made lyric slides. You'll need to generate them using Calvary's Song Lyric Formatter tool.</p>
+            
+            <div style="background: rgba(255,255,255,0.15); border-radius: 12px; padding: 20px; margin-bottom: 16px;">
+                <p style="font-weight: 700; margin-bottom: 12px;">🔧 How to Generate Lyric Slides:</p>
+                <ol style="margin-left: 20px; line-height: 2;">
+                    <li>Go to <a href="https://calvaryhephzibah.co.uk/songlyricformatter" target="_blank" style="color: white; font-weight: 700;">calvaryhephzibah.co.uk/songlyricformatter</a></li>
+                    <li>Enter the <strong>song title</strong> in the title field</li>
+                    <li>Enter the <strong>lyrics</strong> in the lyrics section, following these rules:
+                        <ul style="margin-left: 20px; margin-top: 8px;">
+                            <li>Write <strong>two lines at a time</strong> per slide</li>
+                            <li>Keep each line around <strong>25-30 characters</strong> (e.g. "He's my rock, He's my fortress")</li>
+                            <li>Add a <strong>blank line</strong> between each pair to separate slides</li>
+                        </ul>
+                    </li>
+                    <li>Click <strong>"Generate Slides"</strong></li>
+                    <li>Download the ZIP file</li>
+                    <li>Extract and upload to OBS</li>
+                </ol>
+            </div>
+            
+            <div style="background: rgba(0,0,0,0.2); border-radius: 8px; padding: 16px;">
+                <p style="font-weight: 600; margin-bottom: 8px;">📝 Example Format:</p>
+                <pre style="font-family: monospace; font-size: 0.9rem; line-height: 1.6; opacity: 0.95; white-space: pre-wrap;">He's my rock, He's my fortress
+He's my deliverer, in Him will I trust
+
+Praise the Lord, praise the Lord
+Let the earth hear His voice</pre>
+                <p style="margin-top: 8px; font-size: 0.85rem; opacity: 0.8;">↑ Each pair of lines becomes one slide. The blank line creates the separation.</p>
+            </div>
+            
+            <a href="https://calvaryhephzibah.co.uk/songlyricformatter" target="_blank" style="display: inline-block; background: white; color: #F57C00; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1rem; margin-top: 16px;">🔧 Open Song Lyric Formatter</a>
+        </div>
+
+        <!-- Scripture Reading -->
+        <div style="background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%); border-radius: 16px; padding: 32px; color: white; margin-bottom: 32px;">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 16px;">📖 Scripture Reading Before Sermon</h3>
+            <div style="display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 8px; font-weight: 600; margin-bottom: 12px;"><span class="tbc-badge" style="background: rgba(255,255,255,0.3); color: white;">SCRIPTURE TBC</span></div>
+            <p style="margin-bottom: 8px;"><strong>Reader:</strong> Dr Caster Martins</p>
+            <div style="background: rgba(255,255,255,0.15); border-radius: 12px; padding: 20px; margin: 20px 0;">
+                <p style="font-style: italic; opacity: 0.9;">📥 Scripture slides will be added once the reading is confirmed.</p>
+            </div>
+        </div>
+
+        <!-- Sermon Section -->
+        <div style="background: white; border-radius: 16px; padding: 32px; box-shadow: var(--shadow-medium); margin-bottom: 32px;">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 8px; color: var(--deep-charcoal);">📖 Today's Sermon</h3>
+            <p style="color: var(--worship-purple); font-weight: 600; margin-bottom: 20px;">Brother Michael Kabalu</p>
+            <img src="https://drive.google.com/thumbnail?id=1A-uglQFvm6ke22nbR0LufNQkbIo5GiA2&sz=w800" alt="Sermon - The Manifestation of GOD's Glory: The SHEKINAH" style="width: 100%; border-radius: 12px; margin-bottom: 16px;">
+            <p style="font-style: italic; color: #666; padding: 12px 16px; background: var(--cream); border-radius: 8px; margin-bottom: 16px;">💡 Display sermon thumbnail for 30 seconds as Brother Michael Kabalu comes up to preach.</p>
+            
+            <!-- Preacher's Slides -->
+            <div style="background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%); border-radius: 12px; padding: 20px; color: white;">
+                <p style="font-weight: 700; margin-bottom: 8px;">📊 Preacher's Sermon Slides</p>
+                <p style="margin-bottom: 12px; opacity: 0.95;">Brother Michael Kabalu has provided slides to be displayed during the sermon.</p>
+                <a href="https://drive.google.com/file/d/1pNzOLm8MIcT58_p432uGZVV_57Iklb8G/view?usp=sharing" target="_blank" style="display: inline-block; background: white; color: #1e3a5f; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.95rem;">📥 Download Slides (ZIP)</a>
+                <p style="margin-top: 12px; font-size: 0.9rem; opacity: 0.9;">⚠️ Extract the ZIP file before service — contains images to display on screen during the sermon.</p>
+            </div>
+        </div>
+
+        <!-- Offering Song -->
+        <div style="background: white; border-radius: 16px; padding: 32px; box-shadow: var(--shadow-medium); margin-bottom: 32px; border-left: 5px solid #4CAF50;">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 16px; color: var(--deep-charcoal);">💰 Offering Song</h3>
+            <div style="background: linear-gradient(135deg, var(--worship-purple) 0%, var(--worship-blue) 100%); border-radius: 12px; padding: 20px; color: white; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                <div>
+                    <span style="background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 700;">🎵</span>
+                    <span style="font-weight: 700; font-size: 1.1rem; margin-left: 12px;">Praise The Name of Jesus</span>
+                </div>
+                <a href="https://drive.google.com/file/d/1yu3bjl3r3loA3gOiU4Yo3yogVJOzH1q4/view?usp=sharing" target="_blank" style="background: white; color: var(--worship-purple); padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem;">📥 Download Lyrics</a>
+            </div>
+            <p style="margin-top: 12px; font-style: italic; color: #666;">Display lyrics on screen during offering.</p>
+        </div>
+
+        <!-- Media Team Checklist -->
+        <div style="background: white; border-radius: 16px; padding: 32px; box-shadow: var(--shadow-medium); margin-top: 40px;">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 20px; color: var(--deep-charcoal);">✅ Media Team Checklist</h3>
+            <ul style="list-style: none;">
+                <li style="padding: 12px 0 12px 36px; position: relative; border-bottom: 1px solid #eee;"><span style="position: absolute; left: 0; font-size: 1.2rem; color: var(--worship-purple);">☐</span>Phone camera charged and USB-C charger plugged in</li>
+                <li style="padding: 12px 0 12px 36px; position: relative; border-bottom: 1px solid #eee;"><span style="position: absolute; left: 0; font-size: 1.2rem; color: var(--worship-purple);">☐</span>Phone mounted securely and livestream connected</li>
+                <li style="padding: 12px 0 12px 36px; position: relative; border-bottom: 1px solid #eee;"><span style="position: absolute; left: 0; font-size: 1.2rem; color: var(--worship-purple);">☐</span>Camera framing checked (tight headroom - few cm from top of head to top of frame)</li>
+                <li style="padding: 12px 0 12px 36px; position: relative; border-bottom: 1px solid #eee;"><span style="position: absolute; left: 0; font-size: 1.2rem; color: var(--worship-purple);">☐</span>All worship song lyrics downloaded and extracted</li>
+                <li style="padding: 12px 0 12px 36px; position: relative; border-bottom: 1px solid #eee;"><span style="position: absolute; left: 0; font-size: 1.2rem; color: #FF9800;">☐</span><strong>Generate missing lyrics</strong> for "In The Room" and "More Than Able" using the Song Lyric Formatter</li>
+                <li style="padding: 12px 0 12px 36px; position: relative; border-bottom: 1px solid #eee;"><span style="position: absolute; left: 0; font-size: 1.2rem; color: var(--worship-purple);">☐</span>Scripture slides downloaded (once confirmed)</li>
+                <li style="padding: 12px 0 12px 36px; position: relative; border-bottom: 1px solid #eee;"><span style="position: absolute; left: 0; font-size: 1.2rem; color: var(--worship-purple);">☐</span>Sermon thumbnail ready</li>
+                <li style="padding: 12px 0 12px 36px; position: relative; border-bottom: 1px solid #eee;"><span style="position: absolute; left: 0; font-size: 1.2rem; color: var(--worship-purple);">☐</span>Preacher's sermon slides downloaded and extracted (ZIP file)</li>
+                <li style="padding: 12px 0 12px 36px; position: relative; border-bottom: 1px solid #eee;"><span style="position: absolute; left: 0; font-size: 1.2rem; color: var(--worship-purple);">☐</span>Offering song ready ("Praise The Name of Jesus")</li>
+                <li style="padding: 12px 0 12px 36px; position: relative; border-bottom: 1px solid #eee;"><span style="position: absolute; left: 0; font-size: 1.2rem; color: var(--worship-purple);">☐</span>Media Team Training Announcement slides ready (if any)</li>
+                <li style="padding: 12px 0 12px 36px; position: relative;"><span style="position: absolute; left: 0; font-size: 1.2rem; color: var(--worship-purple);">☐</span>Screen layouts tested before service</li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+</html>
