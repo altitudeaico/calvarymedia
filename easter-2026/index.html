@@ -44,19 +44,45 @@ body {
 }
 
 .hero-bg {
-  position: absolute;
-  inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1454789548928-7b40b8fd7c11?w=1800&q=85&auto=format&fit=crop');
-  background-position: center 50%;
-  background-size: cover;
-  background-position: center 30%;
-  transform: scale(1.05);
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 28% 18% at 52% 60%, rgba(255,245,190,1) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 38% at 52% 63%, rgba(255,210,90,0.6) 0%, transparent 65%),
+    radial-gradient(ellipse 85% 55% at 52% 67%, rgba(235,130,50,0.4) 0%, transparent 72%),
+    radial-gradient(ellipse 140% 80% at 52% 72%, rgba(210,80,40,0.25) 0%, transparent 80%),
+    linear-gradient(180deg,
+      #0e0820 0%, #1e0e38 8%, #3c1852 18%,
+      #6e2458 28%, #a83848 38%, #cc6030 48%,
+      #e09020 56%, #f0be40 64%,
+      #f8da80 72%, #fceeb0 82%, #fef8e0 92%, #ffffff 100%
+    );
   animation: slowZoom 20s ease-in-out infinite alternate;
+}
+.hero-bg::before {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
+  background:
+    radial-gradient(ellipse 110% 55% at 20% 105%, #080514 0%, transparent 52%),
+    radial-gradient(ellipse 90% 48% at 55% 112%, #100a20 0%, transparent 48%),
+    radial-gradient(ellipse 70% 42% at 82% 108%, #080514 0%, transparent 50%),
+    linear-gradient(180deg, transparent 0%, #090616 55%);
+}
+.hero-bg::after {
+  content: '';
+  position: absolute; bottom: 17%; left: 50%;
+  transform: translateX(-50%);
+  width: 200px; height: 240px;
+  background: radial-gradient(ellipse 65% 55% at 50% 52%,
+    rgba(255,245,190,0.95) 0%, rgba(255,215,90,0.7) 25%,
+    rgba(240,170,50,0.35) 55%, transparent 75%);
+  border-radius: 50% 50% 46% 46% / 52% 52% 48% 48%;
+  box-shadow: 0 0 70px 28px rgba(255,225,100,0.45), 0 0 140px 55px rgba(255,175,55,0.2);
+  filter: blur(3px);
 }
 
 @keyframes slowZoom {
-  from { transform: scale(1.05); }
-  to   { transform: scale(1.12); }
+  from { opacity: 0.92; }
+  to   { opacity: 1; }
 }
 
 .hero-overlay {
@@ -279,13 +305,103 @@ body {
 }
 
 .card-friday .card-img {
-  background-image: url('https://images.unsplash.com/photo-1516549655169-df83a0774514?w=900&q=80&auto=format&fit=crop');
-  background-position: center 40%;
+  /* Three crosses on Calvary hill — stormy dusk sky */
+  background:
+    /* Dramatic storm clouds */
+    radial-gradient(ellipse 80% 40% at 20% 20%, rgba(80,60,90,0.8) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 35% at 75% 15%, rgba(60,40,70,0.7) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 30% at 50% 30%, rgba(100,70,50,0.5) 0%, transparent 60%),
+    /* Horizon glow behind crosses */
+    radial-gradient(ellipse 80% 25% at 50% 68%, rgba(200,100,40,0.7) 0%, rgba(160,60,20,0.4) 40%, transparent 70%),
+    radial-gradient(ellipse 100% 30% at 50% 72%, rgba(240,140,30,0.35) 0%, transparent 65%),
+    /* Sky gradient */
+    linear-gradient(180deg,
+      #1a1028 0%, #2a1840 15%, #3d2050 28%,
+      #5a2840 40%, #803830 52%, #a85020 60%,
+      #c07828 68%, #d89040 76%, #e8b060 84%, #f0c878 92%, #f5d890 100%
+    );
+}
+/* Centre cross (tall) */
+.card-friday .card-img::before {
+  content: '';
+  position: absolute;
+  left: 50%; bottom: 22%;
+  transform: translateX(-50%);
+  width: 14px; height: 140px;
+  background: #0a0610;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.5);
+}
+/* Crossbeam centre */
+.card-friday .card-img::after {
+  content: '';
+  position: absolute;
+  left: 50%; bottom: 64%;
+  transform: translateX(-50%) translateX(-1px);
+  width: 70px; height: 12px;
+  background: #0a0610;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.5);
+  /* Left cross shadow */
+  box-shadow:
+    -80px 30px 0 -1px #0a0610,
+    -80px 30px 4px 2px rgba(0,0,0,0.3),
+    80px 30px 0 -1px #0a0610,
+    80px 30px 4px 2px rgba(0,0,0,0.3);
 }
 
 .card-sunday .card-img {
-  background-image: url('https://images.unsplash.com/photo-1500251232718-aa9e99a38240?w=900&q=80&auto=format&fit=crop');
-  background-position: center 40%;
+  /* Empty tomb — looking out from inside cave to bright morning */
+  background:
+    /* Bright exterior world — golden sunrise outside */
+    radial-gradient(ellipse 55% 65% at 50% 46%,
+      rgba(255,248,200,1) 0%,
+      rgba(255,230,120,0.95) 15%,
+      rgba(255,200,80,0.8) 30%,
+      rgba(240,160,50,0.5) 50%,
+      rgba(180,100,30,0.2) 70%,
+      transparent 85%
+    ),
+    /* Warm exterior glow spilling in */
+    radial-gradient(ellipse 80% 80% at 50% 48%,
+      rgba(255,220,100,0.4) 0%, rgba(200,140,40,0.2) 50%, transparent 75%
+    ),
+    /* Cave interior walls — dark cool stone */
+    linear-gradient(180deg,
+      #1c1a24 0%, #28242e 12%,
+      #1e1c28 25%, #16141e 40%,
+      #100e18 55%, #0c0a14 70%,
+      #080610 85%, #040308 100%
+    );
+}
+/* Cave opening arch shape — light from outside */
+.card-sunday .card-img::before {
+  content: '';
+  position: absolute;
+  top: 8%; left: 50%;
+  transform: translateX(-50%);
+  width: 68%; height: 75%;
+  background: radial-gradient(ellipse 75% 85% at 50% 42%,
+    rgba(255,248,200,0.95) 0%,
+    rgba(255,235,130,0.85) 18%,
+    rgba(255,210,80,0.65) 35%,
+    rgba(240,170,50,0.35) 55%,
+    transparent 75%
+  );
+  border-radius: 50% 50% 45% 45% / 55% 55% 45% 45%;
+  filter: blur(1px);
+}
+/* Stone texture on cave floor */
+.card-sunday .card-img::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0; height: 32%;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(40,35,55,0.6) 30%,
+    rgba(25,22,35,0.9) 65%,
+    #100e18 100%
+  );
+  /* Folded linen cloth hint */
+  border-top: 3px solid rgba(255,248,220,0.15);
 }
 
 .card-overlay {
