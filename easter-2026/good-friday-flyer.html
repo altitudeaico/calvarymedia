@@ -304,6 +304,60 @@ body { font-family: 'Cormorant Garamond', serif; background: #f8f6f2; overflow-x
   transition: color 0.3s, gap 0.3s;
 }
 .easter-link:hover { color: var(--text); gap: 16px; }
+
+/* ── MOBILE RESPONSIVE ── */
+@media (max-width: 768px) {
+  /* Nav */
+  .nav { padding: 12px 20px; }
+  .nav-right { display: none; }
+
+  /* Hero */
+  .hero { padding-bottom: 48px; }
+  .hero-badge { font-size: 8px; letter-spacing: 2px; padding: 6px 14px; top: 72px; }
+  .hero-eyebrow { font-size: 9px; letter-spacing: 4px; }
+  .hero-title { font-size: clamp(60px, 16vw, 96px); letter-spacing: -2px; }
+  .hero-sub { font-size: 14px; margin-top: 12px; }
+
+  /* Chips */
+  .chips-row { padding: 28px 20px 0; gap: 8px; }
+  .chip { padding: 8px 14px; font-size: 8px; letter-spacing: 2px; }
+
+  /* Main */
+  .main { padding: 40px 20px 60px; }
+
+  /* Speaker section — stack on mobile */
+  .speaker-section {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .photo-wrap { max-width: 400px; margin: 0 auto; width: 100%; }
+
+  /* Talk info */
+  .talk-title { font-size: 38px; }
+  .talk-body { font-size: 16px; }
+  .sc-text { font-size: 17px; }
+
+  /* Banner */
+  .banner { height: 260px; }
+  .banner-content { padding: 32px 28px; }
+  .banner-title { font-size: 32px; }
+  .banner-sub { font-size: 14px; }
+
+  /* Expect grid — stack to 1 col */
+  .expect-grid { grid-template-columns: 1fr; gap: 14px; }
+
+  /* Bottom bar — stack */
+  .bottom-bar { flex-direction: column; align-items: stretch; }
+  .back-btn, .easter-link { text-align: center; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: clamp(52px, 18vw, 80px); }
+  .main { padding: 32px 16px 48px; }
+  .talk-title { font-size: 32px; }
+  .banner { height: 220px; }
+  .banner-title { font-size: 26px; }
+}
 </style>
 </head>
 <body>

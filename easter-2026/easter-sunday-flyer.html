@@ -296,6 +296,68 @@ body { font-family: 'Cormorant Garamond', serif; background: #f8f6f2; overflow-x
   transition: color 0.3s, gap 0.3s;
 }
 .friday-link:hover { color: var(--text); gap: 16px; }
+
+/* ── MOBILE RESPONSIVE ── */
+@media (max-width: 768px) {
+  /* Nav */
+  .nav { padding: 12px 20px; }
+  .nav-right { display: none; }
+
+  /* Hero */
+  .hero-badge { font-size: 8px; letter-spacing: 2px; padding: 6px 14px; top: 72px; }
+  .he-is { font-size: 11px; letter-spacing: 6px; }
+  .risen { font-size: clamp(72px, 18vw, 120px); letter-spacing: -3px; }
+  .hero-verse { font-size: 14px; padding: 0 16px; }
+
+  /* Chips */
+  .chips-row { padding: 28px 20px 0; gap: 8px; }
+  .chip { padding: 8px 14px; font-size: 8px; letter-spacing: 2px; }
+
+  /* Main */
+  .main { padding: 40px 20px 60px; }
+
+  /* Intro section — stack */
+  .intro-section {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .intro-title { font-size: 38px; }
+  .intro-body { font-size: 16px; }
+
+  /* Feature cards — full width stacked */
+  .intro-right { gap: 12px; }
+  .feature-card { padding: 20px; }
+  .fc-body { font-size: 14px; }
+
+  /* Scripture banner */
+  .sb-content { padding: 40px 28px; }
+  .sb-quote { font-size: 24px; }
+  .sb-icon { font-size: 40px; top: 10px; left: 20px; }
+
+  /* Expect grid — single column */
+  .expect-grid { grid-template-columns: 1fr; gap: 14px; }
+
+  /* GF callout — stack */
+  .gf-callout {
+    grid-template-columns: 1fr;
+    padding: 24px;
+    gap: 20px;
+  }
+  .gf-badge { width: fit-content; }
+  .gf-title { font-size: 20px; }
+  .gf-body { font-size: 14px; }
+
+  /* Bottom bar — stack */
+  .bottom-bar { flex-direction: column; align-items: stretch; }
+  .back-btn, .friday-link { text-align: center; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .risen { font-size: clamp(60px, 20vw, 96px); }
+  .main { padding: 32px 16px 48px; }
+  .intro-title { font-size: 32px; }
+  .sb-quote { font-size: 20px; }
+}
 </style>
 </head>
 <body>

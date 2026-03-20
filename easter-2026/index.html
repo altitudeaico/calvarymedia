@@ -547,6 +547,53 @@ body {
   color: #4a4a4a;
   text-transform: uppercase;
 }
+
+/* ── MOBILE RESPONSIVE ── */
+@media (max-width: 768px) {
+  /* Nav */
+  .nav { padding: 12px 20px; }
+  .nav-label { display: none; }
+  .nav-logo img { height: 28px; }
+  .nav-date { font-size: 8px; letter-spacing: 1px; }
+
+  /* Hero */
+  .hero { min-height: 100svh; }
+  .hero-eyebrow { font-size: 9px; letter-spacing: 3px; }
+  .hero-at { font-size: clamp(22px, 6vw, 36px); }
+  .hero-calvary { font-size: clamp(52px, 14vw, 80px); }
+  .hero-year { font-size: 11px; letter-spacing: 6px; margin-top: 14px; }
+
+  /* Cards section */
+  .cards-section { padding: 48px 20px; gap: 36px; }
+  .section-title { font-size: 32px; }
+
+  /* Cards grid — stack on mobile */
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .event-card { min-height: 420px; }
+  .card-title-main { font-size: 36px; }
+  .card-subtitle { font-size: 14px; }
+  .card-content { padding: 24px; }
+
+  /* Info strip — 2x2 grid on mobile */
+  .info-strip { grid-template-columns: 1fr 1fr; }
+  .info-item { padding: 20px 16px; }
+  .info-item:nth-child(2) { border-right: none; }
+  .info-item:nth-child(3) { border-top: 1px solid #f0f0f0; }
+  .info-item-value { font-size: 15px; }
+
+  /* Footer */
+  .footer { padding: 32px 20px; }
+}
+
+@media (max-width: 480px) {
+  .nav-date { display: none; }
+  .cards-section { padding: 40px 16px; gap: 28px; }
+  .info-strip { grid-template-columns: 1fr 1fr; }
+  .card-date-chip { font-size: 8px; padding: 4px 12px; }
+}
 </style>
 </head>
 <body>
