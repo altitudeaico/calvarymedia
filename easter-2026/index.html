@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Easter @ Calvary 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --gold: #c9a227;
+  --gold-dim: #8b6914;
+  --red: #c41e2a;
+  --red-dark: #8a0f18;
+  --dark: #0a0705;
+  --light: #fdf9f2;
+}
+
+body {
+  background: var(--dark);
+  font-family: 'Cormorant Garamond', serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Ambient background glow */
+.bg-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glow-top {
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 500px;
+  background: radial-gradient(ellipse, #c9a22712 0%, transparent 70%);
+  animation: breathe 6s ease-in-out infinite;
+}
+
+.glow-bottom-left {
+  position: absolute;
+  bottom: -100px;
+  left: -100px;
+  width: 500px;
+  height: 400px;
+  background: radial-gradient(ellipse, #c41e2a0a 0%, transparent 70%);
+  animation: breathe 8s ease-in-out infinite reverse;
+}
+
+.glow-bottom-right {
+  position: absolute;
+  bottom: -100px;
+  right: -100px;
+  width: 500px;
+  height: 400px;
+  background: radial-gradient(ellipse, #c41e2a08 0%, transparent 70%);
+  animation: breathe 7s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+}
+
+/* Grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%230a0705'/%3E%3Crect x='0' y='0' width='1' height='1' fill='%23ffffff06'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%23ffffff03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* Main container */
+.container {
+  position: relative;
+  z-index: 1;
+  width: min(860px, 96vw);
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  animation: fadeUp 1.2s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Top rule */
+.top-rule {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), var(--gold), var(--gold-dim), transparent);
+  margin-bottom: 36px;
+  opacity: 0.7;
+}
+
+/* Logo */
+.logo-wrap {
+  margin-bottom: 16px;
+  animation: fadeUp 1.2s 0.1s ease both;
+}
+
+.logo-wrap img {
+  height: 44px;
+  filter: brightness(0.85);
+}
+
+/* Church label */
+.church-label {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 40px;
+  animation: fadeUp 1.2s 0.15s ease both;
+}
+
+/* EASTER @ CALVARY heading */
+.hero-wrap {
+  text-align: center;
+  margin-bottom: 8px;
+  animation: fadeUp 1.2s 0.2s ease both;
+}
+
+.at-sign-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 4px;
+}
+
+.line-ornament {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim));
+}
+
+.line-ornament.right {
+  background: linear-gradient(90deg, var(--gold-dim), transparent);
+}
+
+.at-text {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 6px;
+  color: var(--gold);
+  opacity: 0.7;
+}
+
+.easter-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(64px, 10vw, 96px);
+  font-weight: 300;
+  line-height: 0.85;
+  color: #f0e8dc;
+  letter-spacing: -2px;
+}
+
+.calvary-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 6vw, 52px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--gold);
+  letter-spacing: 2px;
+  margin-top: 6px;
+}
+
+.year {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  letter-spacing: 8px;
+  color: #5a4a3a;
+  margin-top: 16px;
+}
+
+/* Divider cross */
+.cross-divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+  margin: 36px 0;
+  animation: fadeUp 1.2s 0.3s ease both;
+}
+
+.cross-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #2a1f1210, #2a1f12);
+}
+
+.cross-line.right {
+  background: linear-gradient(90deg, #2a1f12, #2a1f1210, transparent);
+}
+
+.cross-icon {
+  color: var(--gold);
+  font-size: 22px;
+  opacity: 0.5;
+  letter-spacing: 12px;
+}
+
+/* Service cards */
+.cards-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  animation: fadeUp 1.2s 0.4s ease both;
+}
+
+.service-card {
+  position: relative;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #1a1008;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.4s ease,
+              border-color 0.3s ease;
+  cursor: pointer;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+}
+
+/* Good Friday card */
+.card-friday {
+  background: #0f0a06;
+  border-color: #2a1f12;
+}
+
+.card-friday:hover {
+  border-color: var(--gold-dim);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 40px rgba(201,162,39,0.06);
+}
+
+/* Easter Sunday card */
+.card-sunday {
+  background: #120608;
+  border-color: #2a0f12;
+}
+
+.card-sunday:hover {
+  border-color: var(--red-dark);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 40px rgba(196,30,42,0.08);
+}
+
+/* Card top bar */
+.card-bar {
+  height: 3px;
+  width: 100%;
+}
+
+.card-friday .card-bar {
+  background: linear-gradient(90deg, var(--gold-dim), var(--gold), var(--gold-dim));
+}
+
+.card-sunday .card-bar {
+  background: linear-gradient(90deg, var(--red-dark), var(--red), var(--red-dark));
+}
+
+/* Card inner */
+.card-inner {
+  padding: 32px 28px 28px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+/* Ambient hover glow inside card */
+.card-glow {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 150px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.card-friday .card-glow {
+  background: radial-gradient(ellipse, var(--gold) 0%, transparent 70%);
+}
+
+.card-sunday .card-glow {
+  background: radial-gradient(ellipse, var(--red) 0%, transparent 70%);
+}
+
+.service-card:hover .card-glow {
+  opacity: 0.06;
+}
+
+/* Card label */
+.card-label {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.card-friday .card-label { color: var(--gold-dim); }
+.card-sunday .card-label { color: #7a2030; }
+
+/* Card date */
+.card-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1;
+  color: #f0e8dc;
+}
+
+.card-friday .card-date em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.card-sunday .card-date em {
+  font-style: italic;
+  color: var(--red);
+}
+
+.card-day {
+  font-size: 13px;
+  font-style: italic;
+  color: #5a4a3a;
+  margin-top: -8px;
+}
+
+/* Card title */
+.card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  font-style: italic;
+  color: #d0c0b0;
+  line-height: 1.2;
+}
+
+/* Card desc */
+.card-desc {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #4a3a2a;
+  font-weight: 300;
+  flex: 1;
+}
+
+/* Card CTA */
+.card-cta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 8px;
+  transition: gap 0.3s ease;
+}
+
+.card-friday .card-cta { color: var(--gold-dim); }
+.card-sunday .card-cta { color: #7a2030; }
+
+.service-card:hover .card-cta {
+  gap: 14px;
+}
+
+.cta-arrow {
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Dates row */
+.dates-strip {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-top: 28px;
+  border: 1px solid #1a1008;
+  animation: fadeUp 1.2s 0.5s ease both;
+}
+
+.date-block {
+  flex: 1;
+  padding: 16px 20px;
+  text-align: center;
+  border-right: 1px solid #1a1008;
+}
+
+.date-block:last-child { border-right: none; }
+
+.db-label {
+  font-family: 'Cinzel', serif;
+  font-size: 8px;
+  letter-spacing: 3px;
+  color: #3a2a1a;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.db-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #6a5a4a;
+  font-style: italic;
+}
+
+/* Bottom */
+.bottom-wrap {
+  margin-top: 32px;
+  text-align: center;
+  animation: fadeUp 1.2s 0.6s ease both;
+}
+
+.bottom-rule {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim)40, transparent);
+  margin-bottom: 20px;
+}
+
+.website {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: #3a2a1a;
+  text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+
+<div class="bg-glow">
+  <div class="glow-top"></div>
+  <div class="glow-bottom-left"></div>
+  <div class="glow-bottom-right"></div>
+</div>
+
+<div class="container">
+
+  <div class="top-rule"></div>
+
+  <div class="logo-wrap">
+    <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/ufTeOHywYxLPaG9TDWPG/media/68319627522e13a702426868.png" alt="Calvary Hephzibah">
+  </div>
+
+  <div class="church-label">Calvary Hephzibah Full Gospel Church · Manchester</div>
+
+  <div class="hero-wrap">
+    <div class="at-sign-row">
+      <div class="line-ornament"></div>
+      <div class="at-text">@ Calvary</div>
+      <div class="line-ornament right"></div>
+    </div>
+    <div class="easter-title">Easter</div>
+    <div class="year">2 0 2 6</div>
+  </div>
+
+  <div class="cross-divider">
+    <div class="cross-line"></div>
+    <div class="cross-icon">✦ ✝ ✦</div>
+    <div class="cross-line right"></div>
+  </div>
+
+  <div class="cards-row">
+
+    <a class="service-card card-friday" href="good-friday-flyer.html">
+      <div class="card-bar"></div>
+      <div class="card-inner">
+        <div class="card-glow"></div>
+        <div class="card-label">Good Friday · 3rd April</div>
+        <div>
+          <div class="card-date"><em>Good</em><br>Friday</div>
+          <div class="card-day">Friday, 3rd April 2026</div>
+        </div>
+        <div class="card-title">Christ &amp; the Passover</div>
+        <div class="card-desc">
+          A special teaching by Gordon &amp; Karen Beattie of ICEJ UK — exploring the profound connection between Passover and the sacrifice of Jesus Christ.
+        </div>
+        <div class="card-cta">
+          View Flyer <span class="cta-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="service-card card-sunday" href="easter-sunday-flyer.html">
+      <div class="card-bar"></div>
+      <div class="card-inner">
+        <div class="card-glow"></div>
+        <div class="card-label">Easter Sunday · 5th April</div>
+        <div>
+          <div class="card-date"><em>Easter</em><br>Sunday</div>
+          <div class="card-day">Sunday, 5th April 2026</div>
+        </div>
+        <div class="card-title">He Is Risen!</div>
+        <div class="card-desc">
+          Join us as we celebrate the resurrection of Jesus Christ with praise, worship and the Word. All are welcome to this joyful Easter celebration.
+        </div>
+        <div class="card-cta">
+          View Flyer <span class="cta-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="dates-strip">
+    <div class="date-block">
+      <div class="db-label">Good Friday</div>
+      <div class="db-value">3rd April 2026</div>
+    </div>
+    <div class="date-block">
+      <div class="db-label">Easter Sunday</div>
+      <div class="db-value">5th April 2026</div>
+    </div>
+    <div class="date-block">
+      <div class="db-label">Venue</div>
+      <div class="db-value">Calvary, Manchester</div>
+    </div>
+    <div class="date-block">
+      <div class="db-label">Admission</div>
+      <div class="db-value">Free · All Welcome</div>
+    </div>
+  </div>
+
+  <div class="bottom-wrap">
+    <div class="bottom-rule"></div>
+    <div class="website">calvaryhephzibah.co.uk</div>
+  </div>
+
+</div>
+
+</body>
+</html>
