@@ -8,317 +8,402 @@
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --red: #c41e2a; --red-dark: #8a0f18;
-  --text: #1a1a1a; --muted: #6a6a6a;
+  --red: #c41e2a; --red-dark: #8a0f18; --red-pale: #fff0f1;
+  --text: #1a1a1a; --muted: #666;
+  --border: rgba(0,0,0,0.07);
   --radius: 20px;
+  --shadow-sm: 0 2px 16px rgba(0,0,0,0.06);
+  --shadow-md: 0 8px 40px rgba(0,0,0,0.10);
+  --shadow-lg: 0 20px 80px rgba(0,0,0,0.14);
 }
 html { scroll-behavior: smooth; }
-body { font-family: 'Cormorant Garamond', serif; background: #faf8f5; overflow-x: hidden; }
+body { font-family: 'Cormorant Garamond', serif; background: #f8f6f2; overflow-x: hidden; color: var(--text); }
 
-/* NAV */
+/* ── NAV ── */
 .nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 14px 40px;
-  background: rgba(255,255,255,0.82);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: 14px 48px;
+  background: rgba(255,255,255,0.80);
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  border-bottom: 1px solid rgba(255,255,255,0.6);
 }
-.nav img { height: 32px; }
 .nav-back {
   font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px;
   color: var(--muted); text-decoration: none; text-transform: uppercase;
-  display: flex; align-items: center; gap: 6px;
-  transition: color 0.2s;
+  display: flex; align-items: center; gap: 8px;
+  transition: color 0.25s, gap 0.25s;
 }
-.nav-back:hover { color: var(--text); }
-.nav-title { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px; color: var(--red); }
+.nav-back:hover { color: var(--text); gap: 12px; }
+.nav-logo img { height: 34px; }
+.nav-right {
+  font-family: 'Cinzel', serif; font-size: 9px;
+  letter-spacing: 3px; color: var(--red); text-align: right;
+}
 
-/* HERO */
+/* ── HERO ── */
 .hero {
-  position: relative; height: 100vh; min-height: 640px;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
+  position: relative; height: 100vh; min-height: 680px;
+  display: flex; align-items: center; justify-content: center;
   overflow: hidden;
 }
 .hero-bg {
   position: absolute; inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=1800&q=85&auto=format&fit=crop');
-  background-size: cover; background-position: center;
-  animation: slowZoom 22s ease-in-out infinite alternate;
+  background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=90&auto=format&fit=crop');
+  background-size: cover; background-position: center 40%;
+  animation: heroZoom 24s ease-in-out infinite alternate;
+  will-change: transform;
 }
-@keyframes slowZoom {
-  from { transform: scale(1.04); }
-  to   { transform: scale(1.10); }
+@keyframes heroZoom {
+  from { transform: scale(1.0); }
+  to   { transform: scale(1.08); }
 }
 .hero-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg,
-    rgba(180,20,30,0.55) 0%,
-    rgba(120,10,20,0.40) 40%,
-    rgba(80,5,12,0.75) 80%,
-    rgba(50,3,8,0.92) 100%
+  background: linear-gradient(
+    to bottom,
+    rgba(180,20,30,0.50) 0%,
+    rgba(120,8,16,0.45) 35%,
+    rgba(80,4,10,0.72) 70%,
+    rgba(50,2,6,0.92) 100%
   );
 }
-.hero-content {
-  position: relative; z-index: 2;
-  text-align: center; padding: 0 24px;
-  display: flex; flex-direction: column; align-items: center; gap: 0;
-  animation: fadeUp 1.2s cubic-bezier(0.16,1,0.3,1) both;
-}
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.hero-chip {
-  display: inline-block;
-  background: rgba(255,255,255,0.14);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.25);
-  border-radius: 100px;
-  padding: 6px 18px;
+.hero-badge {
+  position: absolute; top: 96px; left: 50%; transform: translateX(-50%);
+  z-index: 2;
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.12); backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 100px; padding: 8px 22px;
   font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 4px;
-  color: rgba(255,255,255,0.85); margin-bottom: 24px;
+  color: rgba(255,255,255,0.88);
+  animation: fadeDown 1s 0.2s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes fadeDown {
+  from { opacity:0; transform: translateX(-50%) translateY(-20px); }
+  to   { opacity:1; transform: translateX(-50%) translateY(0); }
+}
+.hero-content {
+  position: relative; z-index: 2; text-align: center; padding: 0 32px;
+  display: flex; flex-direction: column; align-items: center;
+  animation: heroUp 1.2s 0.1s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes heroUp {
+  from { opacity:0; transform:translateY(50px); }
+  to   { opacity:1; transform:translateY(0); }
 }
 .he-is {
-  font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 8px;
-  color: rgba(255,255,255,0.6); margin-bottom: 4px;
+  font-family: 'Cinzel', serif; font-size: 14px;
+  letter-spacing: 10px; color: rgba(255,255,255,0.55); margin-bottom: 4px;
 }
-.risen-text {
-  font-size: clamp(80px, 14vw, 160px);
-  font-weight: 300; color: white;
-  line-height: 0.85; letter-spacing: -4px;
-  text-shadow: 0 8px 60px rgba(0,0,0,0.3);
+.risen {
+  font-size: clamp(80px, 15vw, 160px);
+  font-weight: 300; color: white; line-height: 0.85;
+  letter-spacing: -4px;
+  text-shadow: 0 8px 80px rgba(0,0,0,0.3);
 }
-.risen-em { font-style: italic; }
-.risen-bang { color: rgba(255,255,255,0.4); }
-.hero-scripture {
+.risen em { font-style: italic; }
+.risen-bang { color: rgba(255,255,255,0.35); }
+.hero-verse {
   margin-top: 24px; font-size: 17px; font-style: italic;
-  color: rgba(255,255,255,0.65); line-height: 1.5; max-width: 420px;
+  color: rgba(255,255,255,0.6); max-width: 440px; line-height: 1.6; text-align: center;
 }
-
-/* Scroll cue */
 .scroll-cue {
-  position: absolute; bottom: 36px; left: 50%;
+  position: absolute; bottom: 28px; left: 50%;
   transform: translateX(-50%); z-index: 2;
   display: flex; flex-direction: column; align-items: center; gap: 8px;
 }
-.scroll-label {
-  font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 4px;
-  color: rgba(255,255,255,0.4);
+.scroll-label { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 4px; color: rgba(255,255,255,0.35); }
+.scroll-line { width: 1px; height: 36px; background: linear-gradient(180deg, rgba(255,255,255,0.4), transparent); animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:0.3;} 50%{opacity:1;} }
+
+/* ── CHIPS ── */
+.chips-row {
+  display: flex; justify-content: center; gap: 12px;
+  padding: 40px 48px 0; flex-wrap: wrap;
 }
-.scroll-arrow {
-  width: 1px; height: 40px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.4), transparent);
-  animation: scrollPulse 2s ease-in-out infinite;
+.chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: white; border: 1px solid var(--border);
+  border-radius: 100px; padding: 10px 22px;
+  font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px;
+  color: var(--muted); box-shadow: var(--shadow-sm);
 }
-@keyframes scrollPulse {
-  0%, 100% { opacity: 0.3; } 50% { opacity: 1; }
+.chip-icon { font-size: 15px; }
+.chip strong { color: var(--text); }
+
+/* ── MAIN ── */
+.main { max-width: 1000px; margin: 0 auto; padding: 56px 48px 80px; }
+
+/* Intro */
+.intro-section {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  align-items: start; margin-bottom: 60px;
+}
+.intro-left {
+  animation: fadeRight 1s 0.2s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes fadeRight {
+  from { opacity:0; transform:translateX(-30px); }
+  to   { opacity:1; transform:translateX(0); }
+}
+.intro-eyebrow {
+  font-family: 'Cinzel', serif; font-size: 9px;
+  letter-spacing: 5px; color: var(--muted); margin-bottom: 16px;
+}
+.intro-title {
+  font-size: 52px; font-weight: 600; color: var(--text);
+  line-height: 1.0; letter-spacing: -1px; margin-bottom: 24px;
+}
+.intro-title em { font-style: italic; color: var(--red); }
+.intro-body {
+  font-size: 18px; line-height: 1.85;
+  color: var(--muted); font-weight: 300;
+}
+.intro-right {
+  display: flex; flex-direction: column; gap: 16px;
+  animation: fadeLeft 1s 0.3s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes fadeLeft {
+  from { opacity:0; transform:translateX(30px); }
+  to   { opacity:1; transform:translateX(0); }
 }
 
-/* CONTENT */
-.main { max-width: 960px; margin: 0 auto; padding: 60px 40px 80px; }
-
-.info-row {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-  margin-bottom: 56px;
-}
-.info-card {
-  background: white; border-radius: 16px;
-  padding: 28px; text-align: center;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.05);
-}
-.ic-icon { font-size: 26px; margin-bottom: 10px; }
-.ic-label {
-  font-family: 'Cinzel', serif; font-size: 8px;
-  letter-spacing: 3px; color: var(--muted); margin-bottom: 5px;
-}
-.ic-value { font-size: 19px; font-weight: 600; color: var(--text); }
-.ic-sub { font-size: 12px; color: var(--muted); font-style: italic; margin-top: 2px; }
-
-/* Feature grid */
-.feature-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-  margin-bottom: 48px;
-}
+/* Feature cards */
 .feature-card {
   background: white; border-radius: var(--radius);
-  padding: 32px;
-  box-shadow: 0 2px 20px rgba(0,0,0,0.04);
-  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease;
+  padding: 26px 28px;
+  display: flex; gap: 18px; align-items: flex-start;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s;
 }
-.feature-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 40px rgba(0,0,0,0.1);
-}
-.fc-icon { font-size: 28px; margin-bottom: 14px; }
+.feature-card:hover { transform: translateX(6px); box-shadow: var(--shadow-md); }
+.fc-icon { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
 .fc-title {
-  font-family: 'Cinzel', serif; font-size: 11px;
-  letter-spacing: 2px; color: var(--text);
-  margin-bottom: 8px;
+  font-family: 'Cinzel', serif; font-size: 10px;
+  letter-spacing: 2px; color: var(--text); margin-bottom: 6px;
 }
 .fc-body { font-size: 15px; color: var(--muted); line-height: 1.7; }
 
-/* Scripture pull */
-.scripture-full {
-  background: linear-gradient(135deg, var(--red-dark), var(--red));
-  border-radius: var(--radius);
-  padding: 48px; text-align: center; color: white;
-  margin-bottom: 48px;
-  position: relative; overflow: hidden;
+/* ── SCRIPTURE BANNER ── */
+.scripture-banner {
+  position: relative; border-radius: var(--radius);
+  overflow: hidden; margin-bottom: 60px;
+  box-shadow: var(--shadow-lg);
 }
-.scripture-full::before {
-  content: '❝';
-  position: absolute; top: -20px; left: 24px;
-  font-size: 120px; color: rgba(255,255,255,0.06);
+.sb-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1495107334309-fcf20504a5ab?w=1400&q=85&auto=format&fit=crop');
+  background-size: cover; background-position: center 60%;
+  transition: transform 0.8s ease;
+}
+.scripture-banner:hover .sb-bg { transform: scale(1.03); }
+.sb-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(196,30,42,0.88) 0%, rgba(80,5,12,0.85) 100%);
+}
+.sb-content {
+  position: relative; z-index: 2;
+  padding: 60px 64px; text-align: center;
+}
+.sb-quote {
+  font-size: 34px; font-style: italic; font-weight: 300;
+  color: white; line-height: 1.45; max-width: 640px; margin: 0 auto 20px;
+}
+.sb-ref {
+  font-family: 'Cinzel', serif; font-size: 10px;
+  letter-spacing: 4px; color: rgba(255,255,255,0.5);
+}
+.sb-icon {
+  font-size: 60px; color: rgba(255,255,255,0.08);
+  position: absolute; top: 16px; left: 40px;
   font-family: Georgia, serif; line-height: 1;
 }
-.sf-text {
-  font-size: 28px; font-style: italic; font-weight: 300;
-  line-height: 1.5; color: white; position: relative; z-index: 1;
-  max-width: 640px; margin: 0 auto 16px;
-}
-.sf-ref {
-  font-family: 'Cinzel', serif; font-size: 10px;
-  letter-spacing: 3px; color: rgba(255,255,255,0.55);
-  position: relative; z-index: 1;
-}
 
-/* Good Friday callout */
-.gf-callout {
-  background: #fffbf0;
-  border: 1px solid #e8d89a;
-  border-radius: var(--radius);
-  padding: 32px 36px;
-  display: flex; gap: 24px; align-items: center;
-  margin-bottom: 48px;
+/* ── EXPECT GRID ── */
+.expect-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px; margin-bottom: 60px;
 }
-.gf-left { flex-shrink: 0; }
-.gf-badge {
-  background: #1a0a0c; color: white;
-  border-radius: 12px; padding: 14px 18px;
+.expect-card {
+  background: white; border-radius: var(--radius);
+  padding: 32px 26px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s;
   text-align: center;
 }
-.gf-badge-day { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 3px; color: #c9a227; }
-.gf-badge-date { font-size: 22px; font-weight: 600; color: white; }
-.gf-title {
-  font-size: 22px; font-weight: 600; color: var(--text);
-  margin-bottom: 6px;
+.expect-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+.ec-icon { font-size: 30px; margin-bottom: 14px; }
+.ec-title {
+  font-family: 'Cinzel', serif; font-size: 10px;
+  letter-spacing: 2px; color: var(--text); margin-bottom: 10px;
 }
-.gf-body { font-size: 15px; color: var(--muted); line-height: 1.7; }
+.ec-body { font-size: 15px; color: var(--muted); line-height: 1.75; }
+
+/* ── GF CALLOUT ── */
+.gf-callout {
+  background: white; border-radius: var(--radius);
+  padding: 36px 40px;
+  display: grid; grid-template-columns: auto 1fr; gap: 32px;
+  align-items: center; margin-bottom: 56px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+.gf-badge {
+  background: #0f0a05; border-radius: 16px;
+  padding: 20px 22px; text-align: center; flex-shrink: 0;
+}
+.gf-badge-day {
+  font-family: 'Cinzel', serif; font-size: 8px;
+  letter-spacing: 3px; color: #c9a227; margin-bottom: 4px;
+}
+.gf-badge-date { font-size: 26px; font-weight: 600; color: white; line-height: 1.1; }
+.gf-title { font-size: 26px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+.gf-body { font-size: 16px; color: var(--muted); line-height: 1.7; }
 .gf-link {
   display: inline-flex; align-items: center; gap: 8px;
-  margin-top: 12px;
+  margin-top: 14px;
   font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px;
   color: #b8860b; text-decoration: none;
   transition: gap 0.3s;
 }
 .gf-link:hover { gap: 14px; }
 
-/* back btn */
+/* ── BOTTOM BAR ── */
+.bottom-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px;
+}
 .back-btn {
   display: inline-flex; align-items: center; gap: 10px;
   background: var(--red); color: white;
-  padding: 14px 28px; border-radius: 100px;
+  padding: 14px 30px; border-radius: 100px;
   text-decoration: none;
   font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px;
-  transition: background 0.3s, gap 0.3s;
+  box-shadow: 0 4px 24px rgba(196,30,42,0.3);
+  transition: background 0.3s, gap 0.3s, box-shadow 0.3s;
 }
-.back-btn:hover { background: var(--red-dark); gap: 16px; }
+.back-btn:hover { background: var(--red-dark); gap: 16px; box-shadow: 0 8px 40px rgba(196,30,42,0.4); }
+.friday-link {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: white; color: var(--muted);
+  padding: 14px 30px; border-radius: 100px;
+  text-decoration: none;
+  font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px;
+  box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+  transition: color 0.3s, gap 0.3s;
+}
+.friday-link:hover { color: var(--text); gap: 16px; }
 </style>
 </head>
 <body>
 
 <nav class="nav">
   <a class="nav-back" href="index.html">← Easter @ Calvary</a>
-  <div class="nav-title">Easter Sunday · 5th April 2026</div>
-  <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/ufTeOHywYxLPaG9TDWPG/media/68319627522e13a702426868.png" alt="Calvary">
+  <div class="nav-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/ufTeOHywYxLPaG9TDWPG/media/68319627522e13a702426868.png" alt="Calvary"></div>
+  <div class="nav-right">Easter Sunday<br>5th April 2026</div>
 </nav>
 
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
+  <div class="hero-badge">✦ &nbsp; Calvary Hephzibah Full Gospel Church</div>
   <div class="hero-content">
-    <div class="hero-chip">✦ &nbsp; Easter Sunday Service · Calvary Hephzibah</div>
     <div class="he-is">He Is</div>
-    <div class="risen-text"><span class="risen-em">Risen</span><span class="risen-bang">!</span></div>
-    <div class="hero-scripture">"I am the resurrection and the life. Whoever believes in me will live." — John 11:25</div>
+    <div class="risen"><span class="risen em">Risen</span><span class="risen-bang">!</span></div>
+    <div class="hero-verse">"I am the resurrection and the life. Whoever believes in me will live." — John 11:25</div>
   </div>
   <div class="scroll-cue">
     <span class="scroll-label">Discover</span>
-    <div class="scroll-arrow"></div>
+    <div class="scroll-line"></div>
   </div>
 </section>
 
+<div class="chips-row">
+  <div class="chip"><span class="chip-icon">🌅</span><strong>5th April 2026</strong></div>
+  <div class="chip"><span class="chip-icon">📍</span><strong>Calvary, Manchester</strong></div>
+  <div class="chip"><span class="chip-icon">🕊️</span>Free · <strong>All Welcome</strong></div>
+</div>
+
 <main class="main">
 
-  <div class="info-row">
-    <div class="info-card">
-      <div class="ic-icon">🌅</div>
-      <div class="ic-label">Date</div>
-      <div class="ic-value">5th April</div>
-      <div class="ic-sub">Easter Sunday 2026</div>
+  <div class="intro-section">
+    <div class="intro-left">
+      <div class="intro-eyebrow">Easter Celebration Service</div>
+      <div class="intro-title">Come &amp; Celebrate<br><em>The Risen King</em></div>
+      <div class="intro-body">
+        Easter is the heart of the Christian faith — the greatest event in history. Join us as we gather together to celebrate with joy, praise and the living Word of God.
+        <br><br>
+        Whatever your background, wherever you're at in life — you are welcome here.
+      </div>
     </div>
-    <div class="info-card">
-      <div class="ic-icon">📍</div>
-      <div class="ic-label">Venue</div>
-      <div class="ic-value">Calvary</div>
-      <div class="ic-sub">Manchester, UK</div>
-    </div>
-    <div class="info-card">
-      <div class="ic-icon">🕊️</div>
-      <div class="ic-label">Admission</div>
-      <div class="ic-value">Free</div>
-      <div class="ic-sub">All are welcome</div>
-    </div>
-  </div>
-
-  <div class="feature-grid">
-    <div class="feature-card">
-      <div class="fc-icon">🎶</div>
-      <div class="fc-title">Worship</div>
-      <div class="fc-body">Powerful praise and worship to celebrate the resurrection of Jesus Christ.</div>
-    </div>
-    <div class="feature-card">
-      <div class="fc-icon">📖</div>
-      <div class="fc-title">The Word</div>
-      <div class="fc-body">An Easter message filled with the living hope of the resurrection.</div>
-    </div>
-    <div class="feature-card">
-      <div class="fc-icon">🙏</div>
-      <div class="fc-title">Prayer</div>
-      <div class="fc-body">Come expecting to encounter the risen King. He is alive and His presence is real.</div>
-    </div>
-    <div class="feature-card">
-      <div class="fc-icon">🤝</div>
-      <div class="fc-title">Fellowship</div>
-      <div class="fc-body">Whether visiting for the first time or a lifelong member — come as you are.</div>
+    <div class="intro-right">
+      <div class="feature-card">
+        <div class="fc-icon">🎶</div>
+        <div><div class="fc-title">Worship</div><div class="fc-body">Powerful praise celebrating the resurrection of Christ.</div></div>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon">📖</div>
+        <div><div class="fc-title">The Word</div><div class="fc-body">An Easter message full of the hope of the resurrection.</div></div>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon">🙏</div>
+        <div><div class="fc-title">Prayer &amp; Encounter</div><div class="fc-body">Come expecting to meet the living God.</div></div>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon">🤝</div>
+        <div><div class="fc-title">Fellowship</div><div class="fc-body">Connect with a warm, welcoming community of believers.</div></div>
+      </div>
     </div>
   </div>
 
-  <div class="scripture-full">
-    <div class="sf-text">"Because I live, you also will live."</div>
-    <div class="sf-ref">John 14:19</div>
+  <div class="scripture-banner">
+    <div class="sb-bg"></div>
+    <div class="sb-overlay"></div>
+    <div class="sb-icon">❝</div>
+    <div class="sb-content">
+      <div class="sb-quote">"Because I live, you also will live."</div>
+      <div class="sb-ref">John 14:19</div>
+    </div>
+  </div>
+
+  <div class="expect-grid">
+    <div class="expect-card">
+      <div class="ec-icon">🌄</div>
+      <div class="ec-title">He Is Alive</div>
+      <div class="ec-body">We celebrate not a memory but a living Saviour — the resurrection is real and changes everything.</div>
+    </div>
+    <div class="expect-card">
+      <div class="ec-icon">🕊️</div>
+      <div class="ec-title">New Life</div>
+      <div class="ec-body">Easter is the promise of new beginnings. Whatever you carry, lay it down at the empty tomb.</div>
+    </div>
+    <div class="expect-card">
+      <div class="ec-icon">✨</div>
+      <div class="ec-title">All Welcome</div>
+      <div class="ec-body">First-time visitor or longtime member — there is a place for you at Calvary this Easter.</div>
+    </div>
   </div>
 
   <div class="gf-callout">
-    <div class="gf-left">
-      <div class="gf-badge">
-        <div class="gf-badge-day">Good Friday</div>
-        <div class="gf-badge-date">3rd April</div>
-      </div>
+    <div class="gf-badge">
+      <div class="gf-badge-day">Good Friday</div>
+      <div class="gf-badge-date">3rd<br>April</div>
     </div>
     <div>
       <div class="gf-title">Also this weekend — Christ &amp; the Passover</div>
-      <div class="gf-body">Don't miss our Good Friday service featuring a special teaching by Gordon &amp; Karen Beattie of the International Christian Embassy Jerusalem, exploring the connection between Passover and the cross.</div>
+      <div class="gf-body">Don't miss our Good Friday service featuring a special teaching by Gordon &amp; Karen Beattie of the International Christian Embassy Jerusalem — exploring the connection between Passover and the cross of Christ.</div>
       <a class="gf-link" href="good-friday-flyer.html">View Good Friday details →</a>
     </div>
   </div>
 
-  <a class="back-btn" href="index.html">← Back to Easter @ Calvary</a>
+  <div class="bottom-bar">
+    <a class="back-btn" href="index.html">← Back to Easter @ Calvary</a>
+    <a class="friday-link" href="good-friday-flyer.html">← Good Friday · 3rd April</a>
+  </div>
 
 </main>
-
 </body>
 </html>
