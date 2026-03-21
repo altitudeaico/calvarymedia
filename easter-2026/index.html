@@ -45,23 +45,20 @@ body {
 
 .hero-bg {
   position: absolute; inset: 0;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 900' preserveAspectRatio='xMidYMid slice'%3E%3Cdefs%3E%3CradialGradient id='sun' cx='50%25' cy='52%25' r='28%25'%3E%3Cstop offset='0%25' stop-color='%23FFF8D0' stop-opacity='1'/%3E%3Cstop offset='30%25' stop-color='%23FFD060' stop-opacity='0.9'/%3E%3Cstop offset='70%25' stop-color='%23FF9020' stop-opacity='0.4'/%3E%3Cstop offset='100%25' stop-color='%23FF6010' stop-opacity='0'/%3E%3C/radialGradient%3E%3ClinearGradient id='sky' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%231a1035'/%3E%3Cstop offset='18%25' stop-color='%23381848'/%3E%3Cstop offset='35%25' stop-color='%23702040'/%3E%3Cstop offset='50%25' stop-color='%23b84828'/%3E%3Cstop offset='62%25' stop-color='%23d88020'/%3E%3Cstop offset='74%25' stop-color='%23f0b830'/%3E%3Cstop offset='85%25' stop-color='%23f8d870'/%3E%3Cstop offset='95%25' stop-color='%23fdeeb0'/%3E%3Cstop offset='100%25' stop-color='%23fff8e0'/%3E%3C/linearGradient%3E%3Cfilter id='blur1'%3E%3CfeGaussianBlur stdDeviation='18'/%3E%3C/filter%3E%3Cfilter id='blur2'%3E%3CfeGaussianBlur stdDeviation='8'/%3E%3C/filter%3E%3Cfilter id='blur3'%3E%3CfeGaussianBlur stdDeviation='4'/%3E%3C/filter%3E%3C/defs%3E%3C!-- Sky base --%3E%3Crect width='1440' height='900' fill='url(%23sky)'/%3E%3C!-- Sun glow --%3E%3Cellipse cx='720' cy='470' rx='420' ry='280' fill='url(%23sun)' filter='url(%23blur1)' opacity='0.9'/%3E%3C!-- Clouds upper left - dark purple --%3E%3Cellipse cx='120' cy='180' rx='260' ry='110' fill='%23281040' filter='url(%23blur2)' opacity='0.95'/%3E%3Cellipse cx='280' cy='140' rx='200' ry='85' fill='%23321448' filter='url(%23blur2)' opacity='0.9'/%3E%3Cellipse cx='60' cy='220' rx='180' ry='70' fill='%231e0c30' filter='url(%23blur2)' opacity='0.85'/%3E%3C!-- Clouds upper right - dark purple --%3E%3Cellipse cx='1320' cy='160' rx='240' ry='100' fill='%23281040' filter='url(%23blur2)' opacity='0.92'/%3E%3Cellipse cx='1180' cy='120' rx='210' ry='90' fill='%23301245' filter='url(%23blur2)' opacity='0.88'/%3E%3Cellipse cx='1400' cy='200' rx='160' ry='65' fill='%231e0c30' filter='url(%23blur2)' opacity='0.80'/%3E%3C!-- Clouds mid - warm rose/copper catching light --%3E%3Cellipse cx='200' cy='320' rx='300' ry='120' fill='%23803040' filter='url(%23blur2)' opacity='0.75'/%3E%3Cellipse cx='160' cy='360' rx='220' ry='90' fill='%23a04030' filter='url(%23blur2)' opacity='0.60'/%3E%3Cellipse cx='1240' cy='300' rx='280' ry='115' fill='%23803040' filter='url(%23blur2)' opacity='0.72'/%3E%3Cellipse cx='1280' cy='350' rx='200' ry='85' fill='%23a04030' filter='url(%23blur2)' opacity='0.58'/%3E%3C!-- Clouds mid lit - golden undersides --%3E%3Cellipse cx='300' cy='390' rx='240' ry='70' fill='%23c87030' filter='url(%23blur3)' opacity='0.50'/%3E%3Cellipse cx='1150' cy='380' rx='220' ry='65' fill='%23c87030' filter='url(%23blur3)' opacity='0.48'/%3E%3C!-- Bright cloud edges near sun --%3E%3Cellipse cx='480' cy='300' rx='180' ry='55' fill='%23e8a030' filter='url(%23blur3)' opacity='0.55'/%3E%3Cellipse cx='960' cy='280' rx='190' ry='58' fill='%23e8a030' filter='url(%23blur3)' opacity='0.52'/%3E%3C!-- Light rays from sun --%3E%3Cline x1='720' y1='470' x2='200' y2='0' stroke='%23FFE080' stroke-width='60' opacity='0.06' filter='url(%23blur1)'/%3E%3Cline x1='720' y1='470' x2='400' y2='0' stroke='%23FFE080' stroke-width='50' opacity='0.07' filter='url(%23blur1)'/%3E%3Cline x1='720' y1='470' x2='720' y2='0' stroke='%23FFE080' stroke-width='55' opacity='0.08' filter='url(%23blur1)'/%3E%3Cline x1='720' y1='470' x2='1040' y2='0' stroke='%23FFE080' stroke-width='50' opacity='0.07' filter='url(%23blur1)'/%3E%3Cline x1='720' y1='470' x2='1240' y2='0' stroke='%23FFE080' stroke-width='45' opacity='0.06' filter='url(%23blur1)'/%3E%3C!-- Horizon glow --%3E%3Cellipse cx='720' cy='620' rx='600' ry='180' fill='%23FFD050' filter='url(%23blur1)' opacity='0.25'/%3E%3C/svg%3E") center center / cover no-repeat;
-}
-
-@keyframes slowZoom {
-  from { opacity: 0.92; }
-  to   { opacity: 1; }
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
 }
 
 .hero-overlay {
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(255,255,255,0.15) 0%,
-    rgba(255,255,255,0.05) 30%,
-    rgba(0,0,0,0.35) 70%,
-    rgba(0,0,0,0.65) 100%
+    rgba(0,0,0,0.15) 0%,
+    rgba(0,0,0,0.10) 30%,
+    rgba(0,0,0,0.45) 70%,
+    rgba(0,0,0,0.72) 100%
   );
 }
 
@@ -609,7 +606,9 @@ body {
 
 <!-- Hero -->
 <section class="hero">
-  <div class="hero-bg"></div>
+  <video class="hero-bg" autoplay muted loop playsinline poster="">
+    <source src="easter-bg.mp4" type="video/mp4">
+  </video>
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
