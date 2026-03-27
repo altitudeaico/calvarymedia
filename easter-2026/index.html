@@ -545,7 +545,20 @@ body {
   text-transform: uppercase;
 }
 
-/* ── MOBILE RESPONSIVE ── */
+/* Easter Monday card */
+.card-monday .card-img-monday {
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 55%, rgba(120,200,100,0.4) 0%, transparent 65%),
+    linear-gradient(180deg, #0a1f10 0%, #152a18 25%, #1e3d22 50%, #2a5530 70%, #3a7040 85%, #4a8850 100%);
+}
+
+/* Mobile — stack all cards */
+@media (max-width: 900px) {
+  .cards-grid { grid-template-columns: 1fr !important; }
+  .info-strip { grid-template-columns: 1fr !important; }
+  .info-item { border-right: none !important; border-bottom: 1px solid #f0f0f0; }
+  .info-item:last-child { border-bottom: none; }
+}
 @media (max-width: 768px) {
   /* Nav */
   .nav { padding: 12px 20px; }
@@ -634,11 +647,11 @@ body {
 <section class="cards-section">
 
   <div class="section-label">
-    <div class="section-label-text">This Easter Weekend</div>
-    <div class="section-title">Two <em>unmissable</em> services</div>
+    <div class="section-label-text">Easter Weekend 2026</div>
+    <div class="section-title">Three <em>unmissable</em> events</div>
   </div>
 
-  <div class="cards-grid">
+  <div class="cards-grid" style="grid-template-columns: 1fr 1fr 1fr;">
 
     <a class="event-card card-friday" href="good-friday-flyer.html">
       <div class="card-img"></div>
@@ -647,6 +660,7 @@ body {
         <div class="card-date-chip">✦ &nbsp; Good Friday · 3rd April</div>
         <div class="card-title-main"><em>Good</em><br>Friday</div>
         <div class="card-subtitle">Christ &amp; the Passover — a special teaching by Gordon &amp; Karen Beattie of ICEJ UK</div>
+        <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.6);margin-bottom:8px;">⏰ 3:00 PM</div>
         <div class="card-cta">View Flyer <span class="cta-arrow">→</span></div>
       </div>
     </a>
@@ -658,32 +672,40 @@ body {
         <div class="card-date-chip">✦ &nbsp; Easter Sunday · 5th April</div>
         <div class="card-title-main"><em>He Is</em><br>Risen!</div>
         <div class="card-subtitle">Join us as we celebrate the resurrection of Jesus Christ with praise, worship and the Word</div>
+        <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.6);margin-bottom:8px;">⏰ 10:30 AM</div>
         <div class="card-cta">View Flyer <span class="cta-arrow">→</span></div>
+      </div>
+    </a>
+
+    <a class="event-card card-monday" href="#" style="cursor:default;">
+      <div class="card-img card-img-monday"></div>
+      <div class="card-overlay" style="background:linear-gradient(180deg,rgba(10,60,30,0.2) 0%,rgba(5,40,20,0.15) 30%,rgba(5,40,20,0.78) 70%,rgba(3,25,12,0.94) 100%);"></div>
+      <div class="card-content">
+        <div class="card-date-chip">✦ &nbsp; Easter Monday · 6th April</div>
+        <div class="card-title-main" style="font-size:clamp(28px,4vw,46px);"><em>Galilee</em><br>Outdoors</div>
+        <div class="card-subtitle">An outdoor Easter Monday celebration at Swinton Grove Park — come and gather together</div>
+        <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.6);margin-bottom:8px;">⏰ 12:00 Noon &nbsp;·&nbsp; 📍 Swinton Grove Park</div>
+        <div class="card-cta" style="color:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.15);">Swinton Grove, M13 0EU</div>
       </div>
     </a>
 
   </div>
 
-  <div class="info-strip">
+  <div class="info-strip" style="grid-template-columns:repeat(3,1fr);">
     <div class="info-item">
-      <div class="info-item-label">Good Friday</div>
-      <div class="info-item-value">3rd April</div>
-      <div class="info-item-sub">2026</div>
+      <div class="info-item-label">Good Friday · 3rd April</div>
+      <div class="info-item-value">3:00 PM</div>
+      <div class="info-item-sub">West Indian Community Centre<br>74 Carmoor Road, M13 0FB</div>
     </div>
     <div class="info-item">
-      <div class="info-item-label">Easter Sunday</div>
-      <div class="info-item-value">5th April</div>
-      <div class="info-item-sub">2026</div>
+      <div class="info-item-label">Easter Sunday · 5th April</div>
+      <div class="info-item-value">10:30 AM</div>
+      <div class="info-item-sub">West Indian Community Centre<br>74 Carmoor Road, M13 0FB</div>
     </div>
     <div class="info-item">
-      <div class="info-item-label">Venue</div>
-      <div class="info-item-value">Calvary</div>
-      <div class="info-item-sub">74 Carmoor Road, M13 0FB</div>
-    </div>
-    <div class="info-item">
-      <div class="info-item-label">Admission</div>
-      <div class="info-item-value">Free</div>
-      <div class="info-item-sub">All are welcome</div>
+      <div class="info-item-label">Easter Monday · 6th April · Galilee</div>
+      <div class="info-item-value">12:00 Noon</div>
+      <div class="info-item-sub">Swinton Grove Park<br>Swinton Grove, Manchester M13 0EU</div>
     </div>
   </div>
 
